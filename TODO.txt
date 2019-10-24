@@ -1,0 +1,46 @@
+What is our name?
+uspace
+uuspace
+u-u.space
+u.space
+
+- decide on contact email:
+u@u-u.space
+us@u-u.space
+hello@u-u.space
+
+- Specify breaks for mobile portrait mode.
+
+- Footer with site map
+	links are Home, projects, Contact
+
+
+- Safari font much bolder, need to use light just for safari :/
+
+
+- Gradiant from header to body?
+	- Or some kind of continuation (eg line going down etc)
+
+- fill out blurb, need to come up with some good copy...
+Your identity is unique, your digital identity should be too.
+uuspace is an interdisciplanary cooperative of digital craftspeople with a passion for creating digital experiences.
+You know who you, we can help create that online.
+
+Test spacing on mobile
+
+- Attribution for icons
+- need some fake portfolio shiz...
+-  programming tutoring
+	Site to teach basic web design/css/javascript/automation with javascript
+	Botique
+	increase accountability for contractors
+	help you understand your product
+	teach you tools and resources
+	increase your digital effectiveness
+- Task list Site
+  - should write it properly with webpack
+  - have a splash page
+	- Need to have onboarding :/
+	- clean it up a little
+	- do syncing via secret link (can send it via email)
+	- should set up an actual server
