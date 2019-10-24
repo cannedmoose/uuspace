@@ -9,13 +9,10 @@ u@u-u.space
 us@u-u.space
 hello@u-u.space
 
-- Specify breaks for mobile portrait mode.
+- mobile try smaller font by default.
 
 - Footer with site map
 	links are Home, projects, Contact
-
-
-- Safari font much bolder, need to use light just for safari :/
 
 
 - Gradiant from header to body?

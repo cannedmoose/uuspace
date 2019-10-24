@@ -1,9 +1,16 @@
 ---
 layout: default
 ---
+<script>
+	window.onload = function () {
+		// Hack to set --vh to real viewport units on mobile.
+		let vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
+	}
+</script>
 <div class="header">
 	<div class="tagline">
-		<h1>We create <span class="u-logo">u</span>nique digital spaces</h1>
+		<h1>We create unique digital spaces</h1>
 	</div>
 
 	<div class="down-arrow">

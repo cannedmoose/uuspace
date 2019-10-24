@@ -1,10 +1,14 @@
 .header {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   background-color: $brand-color;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+
+  font-size: 1.2em;
 
   color: white;
   fill: white;
@@ -12,6 +16,8 @@
 
 .tagline {
   margin-top: auto;
+
+  padding-left: $spacing-unit;
 
   animation-name: logo;
   animation-duration: 6s;
@@ -24,8 +30,8 @@
   animation-duration: 6s;
   animation-iteration-count: infinite;
 
-  width: 5em;
-  height: 5em;
+  width: 2em;
+  height: 2em;
 
   margin-top: auto;
   margin-bottom: $spacing-unit;
@@ -41,9 +47,6 @@
   }
 }
 
-.u-logo {
-  /**HMM HOW TO DIFFERENTIATE?*/
-}
 @keyframes logo {
   0%,
   100% {

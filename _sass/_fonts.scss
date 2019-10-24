@@ -1,10 +1,3 @@
-@font-face {
-  font-family: "LeagueMono";
-  src: url("/assets/fonts/LeagueMono-SemiBold.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-
 /**
  * TODO(P2) Decide on bold vs extra bold.
  */
@@ -26,5 +19,12 @@
   font-family: "LeagueMono";
   src: url("/assets/fonts/LeagueMono-Light.woff2") format("woff2");
   font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LeagueMono";
+  src: url("/assets/fonts/LeagueMono-SemiBold.woff2") format("woff2");
+  font-weight: normal;
   font-style: normal;
 }
