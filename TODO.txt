@@ -8,6 +8,9 @@ u.space
 u@u-u.space
 us@u-u.space
 hello@u-u.space
+SET UP EMAIL
+
+- make create text not selectable
 
 - mobile try smaller font by default.
 
@@ -41,3 +44,28 @@ Test spacing on mobile
 	- clean it up a little
 	- do syncing via secret link (can send it via email)
 	- should set up an actual server
+
+
+A good website gives you and your brand a clear identity
+
+A website is about showing people who you are.
+
+
+The internet provides 
+A website should be a reflexion of you, your identity, your brand not a cookie cutter template.
+
+
+Principles:
+People first
+	Technology should serve human needs. u-u.space 
+Simplicity
+Open Technology
+
+Front page is splash + blurb + links
+links:
+ ------ BIG BOLD BLOCKS ------
+Read our principles
+
+Check out our portfolio
+
+Contact us@u-u.space

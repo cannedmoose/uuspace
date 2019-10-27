@@ -28,3 +28,38 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Raleway";
+  src: url("/assets/fonts/raleway_thin-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Junction";
+  src: url("/assets/fonts/junction-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Junction";
+  src: url("/assets/fonts/junction-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Junction";
+  src: url("/assets/fonts/junction-light.woff") format("woff");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LeagueMono";
+  src: url("/assets/fonts/LeagueMono-SemiBold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}

@@ -4,7 +4,6 @@
   justify-content: center;
   align-items: center;
 
-  background-color: $brand-color;
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
 
@@ -12,6 +11,8 @@
 
   color: white;
   fill: white;
+
+  font-family: $heading-font-family;
 }
 
 .tagline {
@@ -50,10 +51,10 @@
 @keyframes logo {
   0%,
   100% {
-    text-shadow: 0px 0px 2px white;
+    text-shadow: 0px 0px 4px white;
   }
   25% {
-    text-shadow: 0px 0px 4px white;
+    text-shadow: 0px 0px 8px white;
   }
   50% {
     text-shadow: 0px 0px 6px white;
@@ -63,8 +64,29 @@
   }
 }
 
-.wrapper {
-  margin: $spacing-unit;
-}
 .blurb {
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  padding: $spacing-unit;
+
+  background-color: white;
+}
+
+.smallText {
+  font-size: $small-font-size;
+}
+
+.siteMap {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  padding-right: 0.5em;
+  fill: white;
 }

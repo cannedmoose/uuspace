@@ -10,7 +10,7 @@ layout: default
 </script>
 <div class="header">
 	<div class="tagline">
-		<h1>We create unique digital spaces</h1>
+		<h1>I make unique online spaces</h1>
 	</div>
 
 	<div class="down-arrow">
@@ -20,28 +20,89 @@ layout: default
 	</div>
 </div>
 
+<style>
+	.icon {
+		width: 1.5em;
+		height: 1.5em;
+		fill: #333;
+		padding-right: 1em;
+	}
+
+	.icons {
+		min-width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.ic {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		min-height: 1.5em;
+
+	}
+
+</style>
+
 <div class="wrapper">
 	<div class="blurb">
-		<h2>Your identity is unique - your digital identity should be too.
+		<p>
+			Hi I'm Callan 👋
+		</p>
+
+		<p>
+			I'm a Sydney based freelancer with a passion for
+			creating amazing online spaces.
+		</p>
+
+		<h2>
+			My services include
 		</h2>
-		<p>
-			u-u.space is a collective of digital craftspeople with a passion for
-			creating interesting online spaces.
-		</p>
 
-		<p>
-			Our guiding principles are
-			<ul>
-				<li>Somethingg - Yeah something is important.</li>
-				<li>Simplicity - Good design is rarely complicated. We want to help you find a concise way
-					to realize your vision.</li>
-				<li>Transparency - Technology can be complicated, we strive to bring it down to human terms,
-					giving everyone a place at the table.</li>
-			</ul>
-		</p>
+		<div class="service">
+			<h3>
+				<span class="icon">{%- include browser.svg -%}</span> Website Design and Developement
+			</h3>
+			<p>
+				Need a website designed from the ground up? Some tweaks made to an existing page? I
+				specialise
+				in making performant, unique website that leave an impact.
+			</p>
 
+			<h3>
+				{%- include code.svg -%} Web App Design and Development
+			</h3>
+			<p>
+				Need a custom web application for your business or personal use? I have years of experience
+				creating rich, interactive web apps.
+			</p>
+
+			<h3>
+				{%- include terminal.svg -%} Hosting, Infrastructure and Domain Management
+			</h3>
+			<p>
+				Need a custom domain for your site? A database migration? Want to change hosting provider? I
+				can set up the infrastructure of your site and make sure it runs smoothly.
+			</p>
+
+
+			<h3>
+				{%- include bar-chart.svg -%} SEO and Digital Marketing
+			</h3>
+			<p>
+				Want to reach more people online? Need insight into what customers do on your site? I have
+				extensive SEO experience and can help get key insights from your analytics.
+			</p>
+		</div>
+
+		<p>Interested in working together? Contact <a href="/contact">me@u-u.space</a></li>
+		</p>
 		<p>
-			Have a project you want to collaborate on? Contact {{site.email}}
+			Want to know more about me? Read my guiding <a href="/principles">principles</a>
+		</p>
+		<p>
+			Want to see some of my work? Check out my <a href="/portfolio">portfolio</a>
 		</p>
 	</div>
+</div>
 </div>
