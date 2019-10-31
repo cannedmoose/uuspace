@@ -1,49 +1,55 @@
 ---
-layout: default
+layout: home
 ---
 <script>
 	window.onload = function () {
-		// Hack to set --vh to real viewport units on mobile.
+		// Hack to set --vh to innerHeight * 0.01;
 		let vh = window.innerHeight * 0.01;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+		let tagline = document.querySelector(".typewriter");
+		tagline.setAttribute("data-count", "0");
+
+		window.setTimeout(() => {
+			document.querySelector(".cursor").classList.remove("blink");
+			window.setInterval(typeWriter, 50);
+		}, 1500);
+
+		typeWriter = () =>
+			window.requestAnimationFrame(() => {
+				let count = parseInt(tagline.getAttribute("data-count"));
+				let text = tagline.getAttribute("data-text");
+
+				if (count > text.length) {
+					document.querySelector(".cursor").classList.add("blink");
+				} else {
+					tagline.setAttribute("data-count", count + 1);
+					tagline.innerText = text.substring(0, count);
+				}
+			})
 	}
+	window.addEventListener("scroll", function () {
+		if (window.scrollY == 0) {
+			document.querySelector(".down-arrow").classList.remove("hidden");
+			document.querySelector(".down-arrow").classList.add("flashinganim");
+		} else {
+			document.querySelector(".down-arrow").classList.add("hidden");
+			document.querySelector(".down-arrow").classList.remove("flashinganim");
+		}
+	});
 </script>
 <div class="header">
-	<div class="tagline">
-		<h1>I make unique online spaces</h1>
+	<div class="tagline glow">
+		<h1><span class="typewriter" data-text="Callan McNamara"></span><span
+						class="cursor blink">█</span></h1>
 	</div>
 
-	<div class="down-arrow">
+	<div class="down-arrow flashinganim">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8">
 			<path d="M1.5 0l-1.5 1.5 4 4 4-4-1.5-1.5-2.5 2.5-2.5-2.5z" transform="translate(0 1)" />
 		</svg>
 	</div>
 </div>
-
-<style>
-	.icon {
-		width: 1.5em;
-		height: 1.5em;
-		fill: #333;
-		padding-right: 1em;
-	}
-
-	.icons {
-		min-width: 100%;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.ic {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		min-height: 1.5em;
-
-	}
-
-</style>
-
 <div class="wrapper">
 	<div class="blurb">
 		<p>
@@ -52,51 +58,36 @@ layout: default
 
 		<p>
 			I'm a Sydney based freelancer with a passion for
-			creating amazing online spaces.
+			creating amazing online spaces. I offer full service design and development of websites and
+			web apps across a range of technologies.
 		</p>
 
-		<h2>
-			My services include
-		</h2>
+		<p>Interested in working together? Contact <a href="/contact">me@u-u.space</a>
+		</p>
+
+		<p>
+			I can help with:
+		</p>
 
 		<div class="service">
-			<h3>
-				<span class="icon">{%- include browser.svg -%}</span> Website Design and Developement
-			</h3>
-			<p>
-				Need a website designed from the ground up? Some tweaks made to an existing page? I
-				specialise
-				in making performant, unique website that leave an impact.
-			</p>
 
 			<h3>
-				{%- include code.svg -%} Web App Design and Development
+				<span class="glow demo-icon">&#xe802;</span> <span>Website Design and Developement</span>
 			</h3>
-			<p>
-				Need a custom web application for your business or personal use? I have years of experience
-				creating rich, interactive web apps.
-			</p>
 
 			<h3>
-				{%- include terminal.svg -%} Hosting, Infrastructure and Domain Management
+				<span class="glow demo-icon">&#xf1c9;</span> <span>Web App Design and Development</span>
 			</h3>
-			<p>
-				Need a custom domain for your site? A database migration? Want to change hosting provider? I
-				can set up the infrastructure of your site and make sure it runs smoothly.
-			</p>
-
 
 			<h3>
-				{%- include bar-chart.svg -%} SEO and Digital Marketing
+				<span class="glow demo-icon">&#xe801;</span> <span>Hosting and Infrastructure
+					Managment</span>
 			</h3>
-			<p>
-				Want to reach more people online? Need insight into what customers do on your site? I have
-				extensive SEO experience and can help get key insights from your analytics.
-			</p>
+
+			<h3>
+				<span class="glow demo-icon">&#xe800;</span> <span>SEO and Digital Marketing</span>
+			</h3>
 		</div>
-
-		<p>Interested in working together? Contact <a href="/contact">me@u-u.space</a></li>
-		</p>
 		<p>
 			Want to know more about me? Read my guiding <a href="/principles">principles</a>
 		</p>

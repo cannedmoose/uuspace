@@ -15,8 +15,9 @@ $heading-font-weight: normal !default;
 
 $spacing-unit: 1.5em !default;
 
-$text-color: #555 !default;
-$background-color: #89cff0 !default;
+$text-color: #ffffff !default;
+//$background-color: white !default;
+$background-color: #000000 !default;
 // A blue would be nice options:
 /*
 b0e0e6 powder
@@ -56,4 +57,4 @@ $on-laptop: 800px !default;
 }
 
 // Import partials.
-@import "base", "layout", "fonts";
+@import "base", "layout", "fonts", "icons";

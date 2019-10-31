@@ -1,71 +1,27 @@
-What is our name?
-uspace
-uuspace
-u-u.space
-u.space
-
-- decide on contact email:
-u@u-u.space
-us@u-u.space
-hello@u-u.space
-SET UP EMAIL
-
-- make create text not selectable
-
-- mobile try smaller font by default.
-
-- Footer with site map
-	links are Home, projects, Contact
+P1 Fix link color
+P2 Try seperate pages for services
+	Will just have a description of the service with more info.
+P2 Design footer (need transition from main body)
+P2 Make empty header space disappear
+P1 Figure out why lighter Mono font isn't working
+P3 Chained animation for flashing neon
+P1 Attribution for icons (before launch)
+P1 Attribution for fonts (before launch)
+P1 set up u-u.space email
+P2 Make Header text not selectable
 
 
-- Gradiant from header to body?
-	- Or some kind of continuation (eg line going down etc)
+Thoughts on cold opening:
 
-- fill out blurb, need to come up with some good copy...
-Your identity is unique, your digital identity should be too.
-uuspace is an interdisciplanary cooperative of digital craftspeople with a passion for creating digital experiences.
-You know who you, we can help create that online.
-
-Test spacing on mobile
-
-- Attribution for icons
-- need some fake portfolio shiz...
--  programming tutoring
-	Site to teach basic web design/css/javascript/automation with javascript
-	Botique
-	increase accountability for contractors
-	help you understand your product
-	teach you tools and resources
-	increase your digital effectiveness
-- Task list Site
-  - should write it properly with webpack
-  - have a splash page
-	- Need to have onboarding :/
-	- clean it up a little
-	- do syncing via secret link (can send it via email)
-	- should set up an actual server
+HMM SO maybe "I make unique online spaces" turns into "u-u.space" as you scroll?
 
 
-A good website gives you and your brand a clear identity
+Like a neon sign flashing on
+Start with u lit up
+the other letter flicker on
+everything is lit up
 
-A website is about showing people who you are.
-
-
-The internet provides 
-A website should be a reflexion of you, your identity, your brand not a cookie cutter template.
-
-
-Principles:
-People first
-	Technology should serve human needs. u-u.space 
-Simplicity
-Open Technology
-
-Front page is splash + blurb + links
-links:
- ------ BIG BOLD BLOCKS ------
-Read our principles
-
-Check out our portfolio
-
-Contact us@u-u.space
+Use shadows to look like light (initally it's just u casting small light, then everything whole page lights up)
+Animation should only show first time they visit
+Afterwards we skip right to showing the full page with regular header
+have a light switch in the footer? This will turn lights off again, next time they visit animation will play
