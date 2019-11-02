@@ -1,7 +1,14 @@
 ---
-layout: home
+layout: default
 ---
 <script>
+	// TODO
+	// Make the typewriter effect not add letters
+	// It should just slowly reveal them
+	// Maybe just encode 2 spans
+	// First span is visible
+	// Second span is invisible text
+	// Then we don't reflow text as it goes.
 	function clearText() {
 		document.querySelectorAll(".typewriter").forEach(el => {
 			el.setAttribute("data-text", el.innerText);
@@ -76,29 +83,31 @@ layout: home
 		}
 	}
 </script>
-<div class="header">
-	<div class="tagline glow">
-		<h1><span class="typewriter">Callan McNamara</span><span class="cursor blink">█</span>
-		</h1>
-		<p><span class="glow typewriter" data-end-delay="100" data-letter-delay="10"> I'm a
-				Sydney based freelancer with a
-				passion for
-				creating amazing online spaces. I offer full service design and development of websites and
-				web apps across a range of technologies.</span></p>
+<div class="tagline glow">
+	<h1><span class="typewriter" data-letter-delay="100">Callan McNamara</span><span
+					class="cursor blink">█</span>
+	</h1>
+	<p><span class="glow typewriter" data-end-delay="100" data-letter-delay="10"> I'm a
+			Sydney based freelance developer with a passion for creating amazing online
+			spaces. I offer
+			full service design and development of websites and
+			web apps across a range of technologies.</span></p>
 
-		<p><span class="glow typewriter" data-start-delay="2500" data-end-delay="100"
-						data-letter-delay="10">
-				Interested in working together? Contact </span>
-			<a href="/contact"><span class="glow typewriter" data-end-delay="100"
-							data-letter-delay="100">me@u-u.space</span></a>
-		</p>
+	<p><span class="glow typewriter" data-start-delay="2500" data-end-delay="100"
+					data-letter-delay="10">
+			Interested in working together? Contact </span>
+		<a href="/contact"><span class="glow typewriter" data-end-delay="100"
+						data-letter-delay="100">me@u-u.space</span></a>
+	</p>
 
-		<p><span class="glow typewriter" data-end-delay="100" data-letter-delay="20">I can help
-				with:</span></p>
-		<p><a class="glow typewriter" data-letter-delay="20">Website Design and Developement</a></p>
-		<p><a class="glow typewriter" data-letter-delay="20">Web App Development</a></p>
-		<p><a class="glow typewriter" data-letter-delay="20">Hosting and Infrastructure
-				Management</a></p>
-		<p><a class="glow typewriter">SEO and Digital Marketing</a></p>
-	</div>
+	<p><span class="glow typewriter" data-end-delay="100" data-letter-delay="20">I can help
+			with</span></p>
+	<p><a href="/web-site" class="glow typewriter" data-letter-delay="20">Website Design and
+			Development</a></p>
+	<p><a href="/web-app" class="glow typewriter" data-letter-delay="20">Web Application
+			Development</a></p>
+	<p><a href="/infra" class="glow typewriter" data-letter-delay="20">Hosting and Infrastructure
+			Management</a></p>
+	<p><a href="/analytics" class="glow typewriter" data-letter-delay="20">SEO and Web Analytics</a>
+	</p>
 </div>
