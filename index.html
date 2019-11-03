@@ -3,6 +3,11 @@ layout: default
 ---
 <script>
 	function clearText() {
+		document.querySelectorAll(".typewriterdone").forEach(el => {
+			el.classList.remove("typewriterdone");
+			el.classList.add("typewriter");
+		})
+
 		document.querySelectorAll(".typewriter").forEach(el => {
 			let hiddenSpan = document.createElement("span");
 			hiddenSpan.classList.add("hidden");
@@ -45,6 +50,9 @@ layout: default
 			cursor.classList.add("blink");
 			// Moving onto next element...
 			el.classList.remove("typewriter");
+			el.classList.add("typewriterdone");
+
+			el.insertAdjacentElement('afterend', cursor);
 
 			let endDelay = parseInt(el.dataset.endDelay || "1000");
 			// Next callback should happen after a certain amount of time...
@@ -71,9 +79,10 @@ layout: default
 
 			let shownspan = document.querySelector(".typewriter .shown");
 			let hiddenspan = document.querySelector(".typewriter .hidden");
+			let textt = hiddenspan.innerText;
 
-			shownspan.innerText += hiddenspan.innerText.substring(0, 1);
-			hiddenspan.innerText = hiddenspan.innerText.substring(1);
+			shownspan.innerText += textt.substring(0, 1);
+			hiddenspan.innerText = textt.substring(1);
 
 			el.setAttribute("data-count", count + 1);
 			let letterDelay = parseInt(el.dataset.letterDelay || "50");

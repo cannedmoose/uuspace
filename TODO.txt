@@ -1,27 +1,12 @@
-P1 Fix link color
-P2 Try seperate pages for services
-	Will just have a description of the service with more info.
-P2 Design footer (need transition from main body)
-P2 Make empty header space disappear
-P1 Figure out why lighter Mono font isn't working
-P3 Chained animation for flashing neon
-P1 Attribution for icons (before launch)
-P1 Attribution for fonts (before launch)
-P1 set up u-u.space email
-P2 Make Header text not selectable
+P1 figure out non home page layout
+	Need some kind of header to tie it back to everything
+P1 Make cursor not overflow lines
+P1 Fix refresh button
+	move to top corner?
+	MAKE IT WORK AFTER GOING THROUGH
+		Need to keep typweriter class on
+		Or add a class when we remove typewriter class
+	Find symbol tht goes with font better
+	make webfont so it glows
+P1 tweak home page text appearence, should be faster for everything (complete in like a second)
 
-
-Thoughts on cold opening:
-
-HMM SO maybe "I make unique online spaces" turns into "u-u.space" as you scroll?
-
-
-Like a neon sign flashing on
-Start with u lit up
-the other letter flicker on
-everything is lit up
-
-Use shadows to look like light (initally it's just u casting small light, then everything whole page lights up)
-Animation should only show first time they visit
-Afterwards we skip right to showing the full page with regular header
-have a light switch in the footer? This will turn lights off again, next time they visit animation will play
