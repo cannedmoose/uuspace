@@ -2,17 +2,13 @@
 layout: default
 ---
 <script>
-	// TODO
-	// Make the typewriter effect not add letters
-	// It should just slowly reveal them
-	// Maybe just encode 2 spans
-	// First span is visible
-	// Second span is invisible text
-	// Then we don't reflow text as it goes.
 	function clearText() {
 		document.querySelectorAll(".typewriter").forEach(el => {
-			el.setAttribute("data-text", el.innerText);
+			let hiddenSpan = document.createElement("span");
+			hiddenSpan.classList.add("hidden");
+			hiddenSpan.innerText = el.innerText;
 			el.innerText = "";
+			el.appendChild(hiddenSpan);
 		})
 	}
 
@@ -41,9 +37,10 @@ layout: default
 		let cursor = document.querySelector(".cursor");
 
 		let count = parseInt(el.dataset.count || "0");
-		let text = el.dataset.text;
+		let text = el.innerText;
 
-		if (count > text.length) {
+		// Note text also includes cursor character
+		if (count > text.length - 1) {
 			console.log("Line done")
 			cursor.classList.add("blink");
 			// Moving onto next element...
@@ -58,7 +55,11 @@ layout: default
 			el.setAttribute("data-count", count + 1);
 			cursor.classList.add("blink");
 			cursor.scrollIntoView(false);
-			el.insertAdjacentElement('afterend', cursor)
+			el.insertAdjacentElement('afterbegin', cursor);
+
+			let shownspan = document.createElement("span");
+			shownspan.classList.add("shown")
+			el.insertAdjacentElement('afterbegin', shownspan)
 
 			let startDelay = parseInt(el.dataset.startDelay || "1500");
 			window.setTimeout(typeWriter, startDelay);
@@ -67,7 +68,13 @@ layout: default
 			console.log("letter", count)
 			cursor.classList.remove("blink");
 			cursor.scrollIntoView(false);
-			el.innerText = text.substring(0, count);
+
+			let shownspan = document.querySelector(".typewriter .shown");
+			let hiddenspan = document.querySelector(".typewriter .hidden");
+
+			shownspan.innerText += hiddenspan.innerText.substring(0, 1);
+			hiddenspan.innerText = hiddenspan.innerText.substring(1);
+
 			el.setAttribute("data-count", count + 1);
 			let letterDelay = parseInt(el.dataset.letterDelay || "50");
 			window.setTimeout(typeWriter, letterDelay);
@@ -84,8 +91,8 @@ layout: default
 	}
 </script>
 <div class="tagline glow">
-	<h1><span class="typewriter" data-letter-delay="100">Callan McNamara</span><span
-					class="cursor blink">█</span>
+	<h1><span class="typewriter" data-letter-delay="100">Callan
+			McNamara</span>
 	</h1>
 	<p><span class="glow typewriter" data-end-delay="100" data-letter-delay="10"> I'm a
 			Sydney based freelance developer with a passion for creating amazing online
@@ -109,5 +116,7 @@ layout: default
 	<p><a href="/infra" class="glow typewriter" data-letter-delay="20">Hosting and Infrastructure
 			Management</a></p>
 	<p><a href="/analytics" class="glow typewriter" data-letter-delay="20">SEO and Web Analytics</a>
+		<span class="cursor blink">█</span>
 	</p>
+
 </div>

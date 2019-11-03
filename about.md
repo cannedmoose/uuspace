@@ -4,7 +4,11 @@ layout: default
 
 # About Me
 
-I was born and raised in Sydney, am ex-google and ex-canva. Prefer working with smaller teams. Have come to believe in a set of principles to guide technolgy solutions:
+I am a Sydney native who has always had a passion for technology. I graduated from the University of Sydney with a Comp Sci/Math double major.
+
+My first job out of Uni was working at Google on the MyMaps platform in Silicon Valley. After Google I came back to Sydney to work at Canva on their image marketplace. Since then I've taken work in the construction and mental health space helping small teams with their web apps.
+
+I've worked across a lot of projects both big and small in my career and have come to believe in a set of principles that help ensure technological solutions are successful:
 
 ### Humans First
 
