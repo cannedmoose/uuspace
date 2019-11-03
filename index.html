@@ -69,6 +69,7 @@ layout: default
 					animation: blink-caret 1.5s step-end infinite;
 					padding-left: .2em;
 					content: "█";
+					position:absolute;
 				}
 		`
 
@@ -89,6 +90,7 @@ layout: default
 					animation: blink-caret 1.5s step-end infinite;
 					padding-left: .2em;
 					content: "█";
+					position:absolute;
 				}
 		`
 
@@ -102,9 +104,10 @@ layout: default
 					opacity : 1;
 				}
 
-				.showing span:nth-child(${count})::after{
+			.showing span:nth-child(${count})::after{
 					padding-left: .2em;
 					content: "█";
+					position: absolute;
 				}
 		`;
 				el.setAttribute("data-count", count + 1);
