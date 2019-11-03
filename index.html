@@ -2,24 +2,35 @@
 layout: default
 ---
 <script>
-	function clearText() {
-		document.querySelectorAll(".typewriterdone").forEach(el => {
-			el.classList.remove("typewriterdone");
-			el.classList.add("typewriter");
-		})
-
+	function resetTypewriter() {
 		document.querySelectorAll(".typewriter").forEach(el => {
-			let hiddenSpan = document.createElement("span");
-			hiddenSpan.classList.add("hidden");
-			hiddenSpan.innerText = el.innerText;
-			el.innerText = "";
-			el.appendChild(hiddenSpan);
+			el.classList.remove("showing");
+			el.classList.add("toshow");
+
+			el.dataset.count = 0;
 		})
 	}
 
 	window.addEventListener('DOMContentLoaded', (event) => {
+		// Add styler element for nth-child based reveal.
+		let s = document.createElement("style");
+		s.setAttribute("id", "styler");
+		document.querySelector("html").appendChild(s);
+
+		// Spanify all the text
+		document.querySelectorAll(".typewriter").forEach(el => {
+			let text = el.innerText;
+			let h = ""
+			for (var i = 0; i < text.length; i++) {
+				let c = text.charAt(i);
+				h += `<span>${c}</span>`
+			}
+			el.setAttribute("data-text", text);
+			el.innerHTML = h;
+		})
+
 		if (!window.localStorage.getItem("hideTerminal")) {
-			clearText();
+			resetTypewriter()
 		} else {
 			document.querySelector(".refresh").classList.remove("hidden");
 		}
@@ -27,72 +38,85 @@ layout: default
 		document.querySelector(".refresh").addEventListener("click", () => {
 			document.querySelector(".refresh").classList.add("hidden");
 			window.localStorage.removeItem("hideTerminal");
-			clearText();
+			resetTypewriter();
+			// TODO(P1) track typewriter to make sure one isn't allready running
 			typeWriter();
 		})
 	});
 
 	function typeWriter() {
-		let el = document.querySelector(".typewriter");
-		if (!el) {
-			window.localStorage.setItem("hideTerminal", "true");
-			document.querySelector(".refresh").classList.remove("hidden");
-			return;
-		}
-		let cursor = document.querySelector(".cursor");
+		window.requestAnimationFrame(() => {
+			let el = document.querySelector(".toshow");
+			if (!el) {
+				window.localStorage.setItem("hideTerminal", "true");
+				document.querySelector(".refresh").classList.remove("hidden");
+				return;
+			}
 
-		let count = parseInt(el.dataset.count || "0");
-		let text = el.innerText;
+			let count = parseInt(el.dataset.count || "0");
+			let text = el.dataset.text;
 
-		// Note text also includes cursor character
-		if (count > text.length - 1) {
-			console.log("Line done")
-			cursor.classList.add("blink");
-			// Moving onto next element...
-			el.classList.remove("typewriter");
-			el.classList.add("typewriterdone");
+			let styler = document.querySelector("#styler")
 
-			el.insertAdjacentElement('afterend', cursor);
+			// Note text also includes cursor character
+			if (count > text.length) {
+				console.log("Line done");
 
-			let endDelay = parseInt(el.dataset.endDelay || "1000");
-			// Next callback should happen after a certain amount of time...
-			window.setTimeout(typeWriter, endDelay);
-		}
-		else if (count == 0) {
-			console.log("Line start")
-			el.setAttribute("data-count", count + 1);
-			cursor.classList.add("blink");
-			cursor.scrollIntoView(false);
-			el.insertAdjacentElement('afterbegin', cursor);
+				el.classList.remove("toshow");
 
-			let shownspan = document.createElement("span");
-			shownspan.classList.add("shown")
-			el.insertAdjacentElement('afterbegin', shownspan)
+				styler.textContent = `
+				.showing:last-child::after{
+					animation: blink-caret 1.5s step-end infinite;
+					padding-left: .2em;
+					content: "█";
+				}
+		`
 
-			let startDelay = parseInt(el.dataset.startDelay || "1500");
-			window.setTimeout(typeWriter, startDelay);
-		}
-		else {
-			console.log("letter", count)
-			cursor.classList.remove("blink");
-			cursor.scrollIntoView(false);
+				let endDelay = parseInt(el.dataset.endDelay || "1000");
+				// Next callback should happen after a certain amount of time...
+				window.setTimeout(typeWriter, endDelay);
+			}
+			else if (count == 0) {
+				console.log("Line start");
+				if (document.querySelector(".showing")) {
+					document.querySelector(".showing").classList.remove("showing")
+				}
+				el.setAttribute("data-count", count + 1);
+				el.classList.add("showing");
 
-			let shownspan = document.querySelector(".typewriter .shown");
-			let hiddenspan = document.querySelector(".typewriter .hidden");
-			let textt = hiddenspan.innerText;
+				styler.textContent = `
+				.showing:first-child::before{
+					animation: blink-caret 1.5s step-end infinite;
+					padding-left: .2em;
+					content: "█";
+				}
+		`
 
-			shownspan.innerText += textt.substring(0, 1);
-			hiddenspan.innerText = textt.substring(1);
+				let startDelay = parseInt(el.dataset.startDelay || "1500");
+				window.setTimeout(typeWriter, startDelay);
+			}
+			else {
+				console.log("letter", count)
+				styler.textContent = `
+				.showing span:nth-child(n + 1):nth-child(-n + ${count}) {
+					opacity : 1;
+				}
 
-			el.setAttribute("data-count", count + 1);
-			let letterDelay = parseInt(el.dataset.letterDelay || "50");
-			window.setTimeout(typeWriter, letterDelay);
-		}
+				.showing span:nth-child(${count})::after{
+					padding-left: .2em;
+					content: "█";
+				}
+		`;
+				el.setAttribute("data-count", count + 1);
+				let letterDelay = parseInt(el.dataset.letterDelay || "50");
+				window.setTimeout(typeWriter, letterDelay);
+			}
+		});
 	}
 	window.onload = function () {
 		// Hack to set --vh to innerHeight * 0.01;
 		let vh = window.innerHeight * 0.01;
-		document.documentElement.style.setProperty('--vh', `${vh}px`);
+		document.documentElement.style.setProperty('--vh', `${vh} px`);
 		if (!window.localStorage.getItem("hideTerminal")) {
 			typeWriter();
 			window.localStorage.setItem("hideTerminal", "true");
@@ -125,7 +149,6 @@ layout: default
 	<p><a href="/infra" class="glow typewriter" data-letter-delay="20">Hosting and Infrastructure
 			Management</a></p>
 	<p><a href="/analytics" class="glow typewriter" data-letter-delay="20">SEO and Web Analytics</a>
-		<span class="cursor blink">█</span>
 	</p>
 
 </div>
