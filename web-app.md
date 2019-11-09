@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# You're idea in code
+# Your idea in code
 
 Have a web application that needs to be brought into the world. My experience with fullstack development can help you realize your vision from start to finish.
 

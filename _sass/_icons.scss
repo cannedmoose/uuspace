@@ -52,3 +52,19 @@
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
+
+.icon-chart-bar:before {
+  content: "\e800";
+} /* '' */
+.icon-terminal:before {
+  content: "\e801";
+} /* '' */
+.icon-browser:before {
+  content: "\e802";
+} /* '' */
+.icon-code:before {
+  content: "\f121";
+} /* '' */
+.icon-file-code:before {
+  content: "\f1c9";
+} /* '' */

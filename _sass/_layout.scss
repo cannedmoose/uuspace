@@ -1,18 +1,18 @@
 .header {
-  padding: $spacing-unit;
-  display: flex;
-  flex-direction: column;
-  max-width: 800px;
-
+  padding-left: 2 * $spacing-unit;
   color: white;
   fill: white;
-
   font-family: $heading-font-family;
+  position: relative;
+  @include media-query($on-palm) {
+    padding-top: $spacing-unit;
+    padding-bottom: $spacing-unit;
+  }
 }
 
-/*.tagline {
-  padding-left: $spacing-unit;
-}*/
+.tagline {
+  position: relative;
+}
 
 .down-arrow {
   width: 2em;
@@ -24,9 +24,6 @@
 
 .refresh {
   @extend %neon-glow;
-
-  flex: 1;
-  margin: auto;
 }
 
 .flashinganim {
@@ -99,15 +96,20 @@
   margin-top: auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  //justify-content: space-around;
   width: 100%;
 }
 
 .smallText {
-  flex: 1;
   font-size: $small-font-size;
   max-width: 50%;
   padding: $spacing-unit;
+  padding-left: 2 * $spacing-unit;
+  font-size: $small-font-size;
+
+  @include media-query($on-palm) {
+    padding-left: $spacing-unit / 2;
+  }
 }
 
 .siteMap {
@@ -115,7 +117,12 @@
   display: flex;
   flex-direction: column;
   padding: $spacing-unit;
+  padding-left: 2 * $spacing-unit;
   font-size: $small-font-size;
+
+  @include media-query($on-palm) {
+    padding-left: $spacing-unit / 2;
+  }
 }
 
 .icon {
@@ -147,4 +154,92 @@
 }
 
 .typewriter {
+}
+
+.email {
+  white-space: nowrap;
+}
+
+.site-nav {
+  background-color: $background-color;
+  z-index: 100;
+  line-height: $base-line-height * $base-font-size * 2.25;
+
+  .nav-trigger {
+    display: none;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+
+  .page-link {
+    color: $text-color;
+    line-height: $base-line-height;
+
+    // Gaps between nav items, but not on the last one
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  @include media-query($on-palm) {
+    position: absolute;
+    top: 9px;
+    right: $spacing-unit / 2;
+    background-color: $background-color;
+    border: 1px solid $grey-color-light;
+    border-radius: 5px;
+    text-align: left;
+    float: right;
+
+    label[for="nav-trigger"] {
+      display: block;
+      float: right;
+      width: 36px;
+      height: 36px;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      display: block;
+      float: right;
+      width: 36px;
+      height: 26px;
+      line-height: 0;
+      padding-top: 10px;
+      text-align: center;
+
+      > svg {
+        fill: $grey-color-dark;
+      }
+    }
+
+    input ~ .trigger {
+      clear: both;
+      display: none;
+    }
+
+    input:checked ~ .trigger {
+      display: block;
+      padding-bottom: 5px;
+    }
+
+    .page-link {
+      display: block;
+      padding: 5px 5px;
+
+      &:not(:last-child) {
+        margin-right: 0;
+      }
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+}
+
+.endline {
+  opacity: 0;
+  margin-left: 0.1em;
 }

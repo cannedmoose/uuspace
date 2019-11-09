@@ -13,10 +13,16 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: u-u.space
+title: u-u.space | Unique Online Spaces
 email: me@u-u.space
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "u-u.space" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 markdown: kramdown
+
+header_pages:
+  - index.html
+  - about.md
+  - portfolio.md
+  - contact.md
