@@ -74,10 +74,10 @@
 @keyframes flashing {
   0%,
   100% {
-    opacity: 0.05;
+    opacity: 0.5;
   }
   50% {
-    opacity: 0.8;
+    opacity: 1;
   }
 }
 
@@ -146,7 +146,8 @@
 
 .demo-icon {
   font-family: "icons";
-  font-size: 2em;
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
 .toshow * {

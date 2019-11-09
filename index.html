@@ -39,7 +39,7 @@ title: home
 
 		document.querySelector(".refresh").addEventListener("click", () => {
 			document.querySelector(".refresh").classList.add("hidden");
-			window.localStorage.removeItem("hideTerminal");
+			//window.localStorage.removeItem("hideTerminal");
 			resetTypewriter();
 			// TODO(P1) track typewriter to make sure one isn't allready running
 			typeWriter();
@@ -163,10 +163,7 @@ title: home
 			Management</a></p>
 	<p><a href="/analytics" class="glow typewriter" data-letter-delay="20">SEO and Web Analytics</a>
 	</p>
-	<div class="refresh flashinganim hidden">
-		<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 8 8">
-			<path
-						d="M4 0c-2.2 0-4 1.8-4 4s1.8 4 4 4c1.1 0 2.12-.43 2.84-1.16l-.72-.72c-.54.54-1.29.88-2.13.88-1.66 0-3-1.34-3-3s1.34-3 3-3c.83 0 1.55.36 2.09.91l-1.09 1.09h3v-3l-1.19 1.19c-.72-.72-1.71-1.19-2.81-1.19z" />
-		</svg>
+	<div class="refresh hidden">
+		<span class="demo-icon">&#xe800;</span>
 	</div>
 </div>

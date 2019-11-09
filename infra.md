@@ -4,16 +4,12 @@ layout: default
 
 # Keep your site running smoothly
 
-Infrastructure is the backbone of your website. I can make sure yours is fulfilling your needs.
+Infrastructure is the backbone of your website. I can make sure yours is sustainably fulfilling your needs.
 
-## Domain registration and management
+## Domain management and hosting
 
-Need a new domain? To tweak your DNS settings? I can help with whatever provider you've chosen.
-
-## Hosting
-
-Don't know where to host your site? I can help.
+Need a new domain or to tweak your DNS settings? Domain management is simple until it isn't. I can help you navigate setting up a new domain, email, configuring subdomains and site verifications or even switch hosting no matter who your registerer is.
 
 ## Database update, migration and export
 
-I have years of experience in traditional relational databases (MySQL, PostgreSQL) and NoSQL datastores (MongoDB, Redis). I can help setup, maintain and extract value from your data.
+I have years of experience in traditional relational databases (MySQL, PostgreSQL) and NoSQL datastores (MongoDB, Redis). I can help setup, transfer, maintain and extract value from your data.

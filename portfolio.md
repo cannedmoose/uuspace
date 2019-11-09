@@ -1,6 +1,5 @@
 ---
 layout: default
-title: portfolio
 ---
 
-Nothin here yet
+# Some of my projects
