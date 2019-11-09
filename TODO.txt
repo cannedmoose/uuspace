@@ -1,12 +1,9 @@
-P1 figure out non home page layout
-	Need some kind of header to tie it back to everything
-P1 Make cursor not overflow lines
-P1 Fix refresh button
-	move to top corner?
-	MAKE IT WORK AFTER GOING THROUGH
-		Need to keep typweriter class on
-		Or add a class when we remove typewriter class
-	Find symbol tht goes with font better
-	make webfont so it glows
 P1 tweak home page text appearence, should be faster for everything (complete in like a second)
+P1 favicon
+P1 Fill out services, maybe have a drop down menu? would make the mobile header harder...
+P1 LOAD BARRIER... wait for fonts to load before we show anything...
+P1 add symbols to the services
+P2 GLowing font, make fonts actually glow...
+P2 tweak refresh position
+
 
