@@ -1,0 +1,51 @@
+.accordians {
+  overflow: hidden;
+  margin-top: 1em;
+}
+
+.accordian {
+  width: 100%;
+  overflow: hidden;
+  &-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: none;
+    &:hover {
+      @extend %neon-glow;
+    }
+  }
+  &-label h1 {
+    width: 100%;
+  }
+  &-content {
+    max-height: 0;
+    padding: 0 1em;
+    transition: all 0.35s;
+    opacity: 0;
+  }
+}
+
+// :checked
+.accordians input:checked {
+  + .accordian-label {
+    @extend %neon-glow;
+  }
+  ~ .accordian-content {
+    max-height: 100vh;
+    padding-bottom: 1em;
+    opacity: 1;
+
+    @include media-query($on-palm) {
+      max-height: 300vh;
+    }
+  }
+}
+
+.accordians input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}

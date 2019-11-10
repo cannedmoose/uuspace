@@ -1,0 +1,102 @@
+<script>
+	/**
+	Cool typewriter effect. 
+	
+	.toshow tracks blocks not yet shown 
+	.showing tracks current block being shown
+	current character is tracked by a count data attribute
+	*/
+	function resetTypewriter() {
+		document.querySelectorAll(".typewriter").forEach(el => {
+			el.classList.remove("showing");
+			el.classList.add("toshow");
+			el.dataset.count = 0;
+		})
+	}
+
+	function typeWriter() {
+		window.requestAnimationFrame(() => {
+			// Clear current cursor effects
+			document.querySelectorAll(".cursor").forEach(el => {
+				el.classList.remove("cursor")
+				el.classList.remove("blink")
+			})
+
+			// Find current element to show.
+			let el = document.querySelector(".toshow");
+
+			// Finished showing elements, clean up.
+			if (!el) {
+				window.localStorage.setItem("hideTerminal", "true");
+				document.querySelector(".refresh").classList.remove("hidden");
+				document.querySelector(".refresh").classList.add("fadein");
+				typewriterHandle = undefined;
+				return;
+			}
+
+			let count = parseInt(el.dataset.count || "0");
+			let textLength = parseInt(el.dataset.textLength || "0");
+			let text = el.dataset.text;
+			let nextDelay = undefined;
+
+			if (count > textLength) {
+				el.classList.remove("toshow");
+				// Note last span is an added one just to allow blinking cursor.
+				el.lastElementChild.classList.add("cursor");
+				el.lastElementChild.classList.add("blink");
+				nextDelay = parseInt(el.dataset.endDelay || "1000");
+			} else if (count == 0) {
+				// Remove showing from previous block.
+				document.querySelectorAll(".showing").forEach(el => el.classList.remove("showing"));
+
+				// Add it to new block and show cursor.
+				el.classList.add("showing");
+				el.firstElementChild.classList.add("cursor");
+				el.firstElementChild.classList.add("blink");
+				el.scrollIntoView({ behavior: "smooth", block: "center" })
+				nextDelay = parseInt(el.dataset.startDelay || "1500");
+			} else {
+
+				// Make one more character visible, display cursor.
+				let children = el.children;
+				children[count - 1].classList.add("visible");
+				children[count].classList.add("cursor");
+				nextDelay = parseInt(el.dataset.letterDelay || "50");
+			}
+
+			el.dataset.count = count + 1;
+			typewriterHandle = window.setTimeout(typeWriter, nextDelay);
+		});
+	}
+
+	let typewriterHandle = undefined;
+	window.addEventListener('DOMContentLoaded', (event) => {
+		// Create a span for each letter.
+		document.querySelectorAll(".typewriter").forEach(el => {
+			let text = el.innerText;
+			el.setAttribute("data-text-length", text.length);
+			let h = ""
+			for (let i = 0; i < text.length; i++) {
+				h += `<span>${text.charAt(i)}</span>`
+			}
+			h += `<span class="endline">.</span>`
+			el.innerHTML = h;
+		})
+
+		document.querySelector(".refresh").addEventListener("click", () => {
+			document.querySelector(".refresh").classList.add("hidden");
+			document.querySelector(".refresh").classList.remove("fadein");
+			resetTypewriter();
+			if (!typewriterHandle) typewriterHandle = typeWriter();
+		})
+
+		if (!window.localStorage.getItem("hideTerminal")) {
+			resetTypewriter()
+			typewriterHandle = typeWriter();
+			window.localStorage.setItem("hideTerminal", "true");
+		} else {
+			document.querySelector(".refresh").classList.remove("hidden");
+			document.querySelector(".refresh").classList.add("fadein");
+		}
+	});
+</script>

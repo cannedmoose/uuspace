@@ -4,105 +4,109 @@ title: services
 ---
 
 <script>
-	window.onload = function () {
+	window.addEventListener('DOMContentLoaded', (event) => {
 		let params = new URLSearchParams(document.location.search.substring(1));
 		let service = params.get("service");
 
 		if (service) {
 			document.querySelector("#" + service).checked = true;
 		}
-	}
+
+		document.querySelector(".accordians").addEventListener("change", (event) => {
+			let target = event.target;
+			let animEnd = () => {
+				target.removeEventListener("transitionend", animEnd);
+				window.requestAnimationFrame(() => {
+					// SHOULD SCROLL TO VIEW
+					//target.scrollIntoView({ behavior: "smooth", block: "nearest" });
+				})
+			}
+			target.parentElement.addEventListener("transitionend", animEnd);
+		});
+	});
 </script>
 <div class="accordians">
 	<div class="accordian">
 		<input type="radio" name="service" id="website" />
 		<label class="accordian-label" for="website">
-			<h1><span class="demo-icon">&#xf1c9;</span> Create a unique online space</h1>
+			<h1><span class="svg-icon">&#xf1c9;</span> Website development</h1>
 		</label>
 		<div class="accordian-content">
-			Your website is the start of your online identity, I can help make sure it represents who you
-			are.
-
+			<p>Your website is the start of your online identity, I can help make sure it represents who
+				you are.</p>
 			<h2>Tweaks to existing sites</h2>
-
-			Your site doesn't quite look right? I can fix that. Whether it's a Shopify Storefront,
-			WordPress
-			blog or an original creation my indepth knowledge of Python, PHP, HTML, CSS and Javascript
-			make
-			any changes a breeze.
+			<p>Your site doesn't quite look right? I can fix that. Whether it's a Shopify Storefront,
+				WordPress blog or an original creation my indepth knowledge of Python, PHP, HTML, CSS and
+				Javascript make any changes a breeze.</p>
 
 			<h2>Design and Development</h2>
 
-			Want an online presence that's different? I can create it. Make a unique hook that is on brand
-			and makes an impression for your visitors.
+			<p>Want an online presence that's different? I can create it. Make a unique hook that is on
+				brand and makes an impression for your visitors.</p>
 		</div>
 	</div>
 	<div class="accordian">
 		<input type="radio" name="service" id="webapp" />
 		<label class="accordian-label" for="webapp">
-			<h1><span class="demo-icon">&#xf120;</span> Your idea in code</h1>
+			<h1><span class="svg-icon">&#xf120;</span> Web App Development</h1>
 		</label>
 		<div class="accordian-content">
-			Have a web application that needs to be brought into the world? My experience with fullstack
-			development can help realize your vision from start to finish.
+			<p>Have a web application that needs to be brought into the world? My experience with
+				fullstack development can help realize your vision from start to finish.</p>
 
 			<h2>Prototyping and MVP</h2>
 
-			Turn your idea into a slick prototype that will turn heads. I will work with you to refine
-			your
-			idea into an MVP that works great on the mobile and desktop web.
+			<p>Turn your idea into a slick prototype that will turn heads. I will work with you to refine
+				your idea into an MVP that works great on the mobile and desktop web. </p>
 
 			<h2>Ongoing Development</h2>
 
-			As your ideas evolves so should your app! I can provide ongoing development for features and
-			functionality to keep you and your users happy.
+			<p>As your ideas evolves so should your app! I can provide ongoing development for features
+				and functionality to keep you and your users happy. </p>
 
 		</div>
 	</div>
 	<div class="accordian">
 		<input type="radio" name="service" id="infra" />
 		<label class="accordian-label" for="infra">
-			<h1><span class="demo-icon">&#xf233;</span> Keep your site running smoothly</h1>
+			<h1><span class="svg-icon">&#xf233;</span> Hosting and Infrastructure</h1>
 		</label>
 		<div class="accordian-content">
-			Infrastructure is the backbone of your website. I can make sure yours is sustainably
-			fulfilling
-			your needs.
+			<p>Infrastructure is the backbone of your website. I can make sure yours is sustainably
+				fulfilling your needs. </p>
 
 			<h2>Domain management and hosting</h2>
 
-			Need a new domain or to tweak your DNS settings? Domain management is simple until it isn't. I
-			can help you navigate setting up a new domain, email, configuring subdomains and site
-			verifications or even switch hosting no matter who your registerer is.
+			<p>Need a new domain or to tweak your DNS settings? Domain management is simple until it
+				isn't. I can help you navigate setting up a new domain, email, configuring subdomains and
+				site verifications or even switch hosting no matter who your registerer is.</p>
 
 			<h2>Database update, migration and export</h2>
 
-			I have years of experience in traditional relational databases (MySQL, PostgreSQL) and NoSQL
-			datastores (MongoDB, Redis). I can help setup, transfer, maintain and extract value from your
-			data.
-
+			<p>I have years of experience in traditional relational databases (MySQL, PostgreSQL) and
+				NoSQL datastores (MongoDB, Redis). I can help setup, transfer, maintain and extract value
+				from your data.</p>
 		</div>
 	</div>
 	<div class="accordian">
 		<input type="radio" name="service" id="seo" />
 		<label class="accordian-label" for="seo">
-			<h1><span class="demo-icon">&#xe802;</span> Keep your site on top</h1>
+			<h1><span class="svg-icon">&#xe802;</span> SEO and Analytics</h1>
 		</label>
 		<div class="accordian-content">
-			I can help you find out who is visiting your site, from where and bring in new visitors.
+			<p>I can help you find out who is visiting your site, from where and bring in new visitors.
+			</p>
 
 			<h2>SEO</h2>
 
-			Want to increase your search rank but don't know where to start? I can make sure your pages
-			are
-			optimized for search engines and give you the tools to keep track of where your customers are
-			coming from.
+			<p>Want to increase your search rank but don't know where to start? I can make sure your pages
+				are optimized for search engines and give you the tools to keep track of where your
+				customers are coming from. </p>
 
 			<h2>Analytics</h2>
 
-			Want to know what people are doing on your site? I can set up an analytics dashboard so you
-			can
-			gain key insights into how people interact with your site.
+			<p>Want to know what people are doing on your site? I can set up an analytics dashboard so you
+				can gain key insights into how people interact with your site.</p>
 
 		</div>
 	</div>
