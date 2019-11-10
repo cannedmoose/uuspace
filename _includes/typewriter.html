@@ -54,6 +54,7 @@
 			} else if (count > textLength + 1) {
 				console.log("END1", timestamp);
 				el.classList.remove("showing");
+				el.classList.remove("toshow");
 				if (nextSelector) {
 					startTyping(nextSelector, result);
 				}
@@ -70,6 +71,7 @@
 				console.log("LETTER", timestamp);
 				el.children[count - 1].classList.add("visible");
 				el.children[count - 1].classList.remove("cursor");
+				el.children[count - 1].classList.remove("blink");
 				el.children[count].classList.add("cursor");
 				vals.timeout = timestamp + letterDelay;
 				result.push(vals);
@@ -86,6 +88,7 @@
 	function clearBlocks(selector) {
 		document.querySelectorAll(selector).forEach(el => {
 			el.classList.remove("showing");
+			el.classList.add("toshow");
 			el.querySelectorAll(":scope > cursor").forEach(el => {
 				el.classlist.remove("cursor");
 				el.classlist.remove("blink");

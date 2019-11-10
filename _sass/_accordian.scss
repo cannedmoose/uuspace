@@ -34,7 +34,7 @@
     @extend %neon-glow;
   }
   ~ .accordian-content {
-    max-height: 100vh;
+    max-height: 100%;
     padding-bottom: 1em;
     opacity: 1;
 
