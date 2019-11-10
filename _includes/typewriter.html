@@ -5,74 +5,97 @@
 	.toshow tracks blocks not yet shown 
 	.showing tracks current block being shown
 	current character is tracked by a count data attribute
+
+	Here's the flow:
+	To start typewriting pass a selector
+	Blocks have a next selector
+
+	do request animation frame (recursive)
+	Check if any of the current blocks should display a letter
+	if so show it
+	if they finish begin next block.
 	*/
-	function resetTypewriter() {
-		document.querySelectorAll(".typewriter").forEach(el => {
-			el.classList.remove("showing");
-			el.classList.add("toshow");
-			el.dataset.count = 0;
-		})
-	}
 
-	function typeWriter() {
-		window.requestAnimationFrame(() => {
-			// Clear current cursor effects
-			document.querySelectorAll(".cursor").forEach(el => {
-				el.classList.remove("cursor")
-				el.classList.remove("blink")
+	let typewriterElements = []
+	function startTyping(selector, accum) {
+		document.querySelectorAll(selector).forEach(el => {
+			accum.push({
+				el,
+				timeout: 0,
+				count: 0,
+				textLength: parseInt(el.dataset.textLength | "0"),
+				startDelay: parseInt(el.dataset.startDelay | "0"),
+				letterDelay: parseInt(el.dataset.letterDelay | "0"),
+				endDelay: parseInt(el.dataset.endDelay | "0"),
+				nextSelector: el.dataset.nextSelector
 			})
-
-			// Find current element to show.
-			let el = document.querySelector(".toshow");
-
-			// Finished showing elements, clean up.
-			if (!el) {
-				window.localStorage.setItem("hideTerminal", "true");
-				document.querySelector(".refresh").classList.remove("hidden");
-				document.querySelector(".refresh").classList.add("fadein");
-				typewriterHandle = undefined;
-				return;
-			}
-
-			let count = parseInt(el.dataset.count || "0");
-			let textLength = parseInt(el.dataset.textLength || "0");
-			let text = el.dataset.text;
-			let nextDelay = undefined;
-
-			if (count > textLength) {
-				el.classList.remove("toshow");
-				// Note last span is an added one just to allow blinking cursor.
-				el.lastElementChild.classList.add("cursor");
-				el.lastElementChild.classList.add("blink");
-				nextDelay = parseInt(el.dataset.endDelay || "1000");
-			} else if (count == 0) {
-				// Remove showing from previous block.
-				document.querySelectorAll(".showing").forEach(el => el.classList.remove("showing"));
-
-				// Add it to new block and show cursor.
-				el.classList.add("showing");
-				el.firstElementChild.classList.add("cursor");
-				el.firstElementChild.classList.add("blink");
-				el.scrollIntoView({ behavior: "smooth", block: "center" })
-				nextDelay = parseInt(el.dataset.startDelay || "1500");
-			} else {
-
-				// Make one more character visible, display cursor.
-				let children = el.children;
-				children[count - 1].classList.add("visible");
-				children[count].classList.add("cursor");
-				nextDelay = parseInt(el.dataset.letterDelay || "50");
-			}
-
-			el.dataset.count = count + 1;
-			typewriterHandle = window.setTimeout(typeWriter, nextDelay);
 		});
 	}
 
-	let typewriterHandle = undefined;
-	window.addEventListener('DOMContentLoaded', (event) => {
+	function typeWriterTick(timestamp) {
+		result = []
+		for (let i = 0; i < typewriterElements.length; i++) {
+			let vals = typewriterElements[i];
+			let { el, timeout, count, textLength, startDelay, letterDelay, endDelay, nextSelector } = vals;
+			if (timestamp <= timeout) {
+				result.push(vals);
+				//console.log("SKIP", timestamp, timeout);
+				continue;
+			}
+
+			vals.count += 1;
+			if (count == 0) {
+				console.log("START", timestamp);
+				el.classList.add("showing");
+				el.firstElementChild.classList.add("cursor");
+				el.firstElementChild.classList.add("blink");
+				vals.timeout = timestamp + startDelay;
+				result.push(vals);
+			} else if (count > textLength + 1) {
+				console.log("END1", timestamp);
+				el.classList.remove("showing");
+				if (nextSelector) {
+					startTyping(nextSelector, result);
+				}
+			}
+			else if (count > textLength) {
+				console.log("END2", timestamp);
+				// TODO(P1) maybe combine this and bottom)
+				// Note last span is an added one just to allow blinking cursor.
+				el.lastElementChild.classList.add("cursor");
+				el.lastElementChild.classList.add("blink");
+				vals.timeout = timestamp + endDelay;
+				result.push(vals);
+			} else {
+				console.log("LETTER", timestamp);
+				el.children[count - 1].classList.add("visible");
+				el.children[count - 1].classList.remove("cursor");
+				el.children[count].classList.add("cursor");
+				vals.timeout = timestamp + letterDelay;
+				result.push(vals);
+			}
+		}
+
+		// Update results, request next frame.
+		typewriterElements = result;
+		if (result.length > 0) {
+			window.requestAnimationFrame(typeWriterTick);
+		}
+	}
+
+	function clearBlocks(selector) {
+		document.querySelectorAll(selector).forEach(el => {
+			el.classList.remove("showing");
+			el.querySelectorAll(":scope > cursor").forEach(el => {
+				el.classlist.remove("cursor");
+				el.classlist.remove("blink");
+			})
+		})
+	}
+
+	function initTypeWritier(selector) {
 		// Create a span for each letter.
-		document.querySelectorAll(".typewriter").forEach(el => {
+		document.querySelectorAll(selector).forEach(el => {
 			let text = el.innerText;
 			el.setAttribute("data-text-length", text.length);
 			let h = ""
@@ -81,22 +104,13 @@
 			}
 			h += `<span class="endline">.</span>`
 			el.innerHTML = h;
-		})
+		});
+	}
 
-		document.querySelector(".refresh").addEventListener("click", () => {
-			document.querySelector(".refresh").classList.add("hidden");
-			document.querySelector(".refresh").classList.remove("fadein");
-			resetTypewriter();
-			if (!typewriterHandle) typewriterHandle = typeWriter();
-		})
-
-		if (!window.localStorage.getItem("hideTerminal")) {
-			resetTypewriter()
-			typewriterHandle = typeWriter();
-			window.localStorage.setItem("hideTerminal", "true");
-		} else {
-			document.querySelector(".refresh").classList.remove("hidden");
-			document.querySelector(".refresh").classList.add("fadein");
-		}
+	window.addEventListener('DOMContentLoaded', (event) => {
+		initTypeWritier(".typewriter");
+		clearBlocks(".typewriter")
+		startTyping(".typeStart", typewriterElements);
+		window.requestAnimationFrame(typeWriterTick);
 	});
 </script>
