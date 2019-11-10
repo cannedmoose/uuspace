@@ -35,10 +35,12 @@ title: home
 			resetTypewriter()
 		} else {
 			document.querySelector(".refresh").classList.remove("hidden");
+			document.querySelector(".refresh").classList.add("fadein");
 		}
 
 		document.querySelector(".refresh").addEventListener("click", () => {
 			document.querySelector(".refresh").classList.add("hidden");
+			document.querySelector(".refresh").classList.remove("fadein");
 			//window.localStorage.removeItem("hideTerminal");
 			resetTypewriter();
 			// TODO(P1) track typewriter to make sure one isn't allready running
@@ -52,6 +54,9 @@ title: home
 			if (!el) {
 				window.localStorage.setItem("hideTerminal", "true");
 				document.querySelector(".refresh").classList.remove("hidden");
+				document.querySelector(".refresh").classList.add("fadein");
+				let styler = document.querySelector("#styler")
+				styler.textContent = "";
 				return;
 			}
 
@@ -137,6 +142,9 @@ title: home
 	}
 </script>
 <div class="tagline glow">
+	<div class="refresh hidden">
+		<span class="demo-icon">&#xe800;</span>
+	</div>
 	<h1><span class="typewriter" data-letter-delay="100">Callan
 			McNamara</span>
 	</h1>
@@ -155,15 +163,16 @@ title: home
 
 	<p><span class="glow typewriter" data-end-delay="100" data-letter-delay="20">I can help
 			with</span></p>
-	<p><a href="/web-site" class="glow typewriter" data-letter-delay="20">Website Design and
+	<p><a href="/services?service=website" class="glow typewriter" data-letter-delay="20">Website
+			Design and
 			Development</a></p>
-	<p><a href="/web-app" class="glow typewriter" data-letter-delay="20">Web Application
+	<p><a href="/services?service=webapp" class="glow typewriter" data-letter-delay="20">Web
+			Application
 			Development</a></p>
-	<p><a href="/infra" class="glow typewriter" data-letter-delay="20">Hosting and Infrastructure
+	<p><a href="/services?service=infra" class="glow typewriter" data-letter-delay="20">Hosting and
+			Infrastructure
 			Management</a></p>
-	<p><a href="/analytics" class="glow typewriter" data-letter-delay="20">SEO and Web Analytics</a>
+	<p><a href="/services?service=seo" class="glow typewriter" data-letter-delay="20">SEO and Web
+			Analytics</a>
 	</p>
-	<div class="refresh hidden">
-		<span class="demo-icon">&#xe800;</span>
-	</div>
 </div>

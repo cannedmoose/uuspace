@@ -1,9 +1,6 @@
 P1 tweak home page text appearence, should be faster for everything (complete in like a second)
 P1 favicon
-P1 Fill out services, maybe have a drop down menu? would make the mobile header harder...
 P1 LOAD BARRIER... wait for fonts to load before we show anything...
-P1 add symbols to the services
 P2 GLowing font, make fonts actually glow...
-P2 tweak refresh position
-
-
+P2 tweak refresh button position
+P3 CLEANUP

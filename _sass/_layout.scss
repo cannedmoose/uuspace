@@ -24,6 +24,7 @@
 
 .refresh {
   @extend %neon-glow;
+  text-align: right;
 }
 
 .flashinganim {
@@ -38,16 +39,19 @@
   animation: none;
 }
 
-.hide {
-  animation-name: fadehide;
+.fadein {
+  animation-name: show;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
 
-@keyframes fadehide {
-  100% {
+@keyframes show {
+  0% {
     opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -130,23 +134,13 @@
   fill: white;
 }
 
-.service {
-  display: grid;
-  grid: auto-flow / 1fr 1fr;
-}
-
-.service * {
-  text-align: left;
-  padding: $spacing-unit;
-}
-
 .glow {
   @extend %neon-glow;
 }
 
 .demo-icon {
   font-family: "icons";
-  font-size: 1.5em;
+  width: 1.5em;
   cursor: pointer;
 }
 
@@ -243,4 +237,67 @@
 .endline {
   opacity: 0;
   margin-left: 0.1em;
+}
+.accordians {
+  //border-radius: 8px;
+  overflow: hidden;
+  //box-shadow: 0 0px 1000px 1px aqua;
+  margin-top: 1em;
+}
+
+.accordian {
+  width: 100%;
+  overflow: hidden;
+  &-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    /* Icon */
+    &:hover {
+      //box-shadow: 0 0px 1px 10px aqua;
+    }
+    &::after {
+      content: "\276F";
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      transition: all 0.35s;
+    }
+  }
+  &-content {
+    max-height: 0;
+    padding: 0 1em;
+    transition: all 0.35s;
+  }
+  &-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    cursor: pointer;
+    &:hover {
+      background: darken($midnight, 10%);
+    }
+  }
+}
+
+// :checked
+input:checked {
+  + .accordian-label {
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+  ~ .accordian-content {
+    max-height: 100vh;
+    padding: 1em;
+  }
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
 }
