@@ -89,9 +89,12 @@
 		document.querySelectorAll(selector).forEach(el => {
 			el.classList.remove("showing");
 			el.classList.add("toshow");
-			el.querySelectorAll(":scope > cursor").forEach(el => {
-				el.classlist.remove("cursor");
-				el.classlist.remove("blink");
+			el.querySelectorAll(":scope .cursor").forEach(el => {
+				el.classList.remove("cursor");
+				el.classList.remove("blink");
+			})
+			el.querySelectorAll(":scope .visible").forEach(el => {
+				el.classList.remove("visible");
 			})
 		})
 	}
@@ -109,11 +112,4 @@
 			el.innerHTML = h;
 		});
 	}
-
-	window.addEventListener('DOMContentLoaded', (event) => {
-		initTypeWritier(".typewriter");
-		clearBlocks(".typewriter")
-		startTyping(".typeStart", typewriterElements);
-		window.requestAnimationFrame(typeWriterTick);
-	});
 </script>

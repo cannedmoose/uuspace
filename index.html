@@ -9,6 +9,15 @@ sitemap:
 
 {%- include typewriter.html -%}
 
+<script>
+	window.addEventListener('DOMContentLoaded', (event) => {
+		initTypeWritier(".typewriter");
+		clearBlocks(".typewriter")
+		startTyping(".typeStart", typewriterElements);
+		window.requestAnimationFrame(typeWriterTick);
+	});
+</script>
+
 <div class="tagline glow">
 	<h1>
 		<span class="typewriter typeStart" data-end-delay="1500"

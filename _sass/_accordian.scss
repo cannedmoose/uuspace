@@ -6,6 +6,8 @@
 .accordian {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
   &-label {
     display: flex;
     justify-content: space-between;
@@ -23,9 +25,13 @@
   &-content {
     max-height: 0;
     padding: 0 1em;
-    transition: all 0.35s;
+    //transition: all 0.35s;
     opacity: 0;
   }
+}
+
+.glow.accordian-label {
+  @extend %neon-glow;
 }
 
 // :checked
@@ -48,4 +54,9 @@
   position: absolute;
   opacity: 0;
   z-index: -1;
+}
+
+.accord {
+  display: flex;
+  flex-direction: row;
 }

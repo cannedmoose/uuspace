@@ -2,36 +2,54 @@
 layout: default
 title: services
 ---
+{%- include typewriter.html -%}
 
 <script>
 	window.addEventListener('DOMContentLoaded', (event) => {
-		let params = new URLSearchParams(document.location.search.substring(1));
-		let service = params.get("service");
+		initTypeWritier(".accordian-content > *");
+		clearBlocks(".accordian-content > *")
 
-		if (service) {
-			document.querySelector("#" + service).checked = true;
-		}
+		doSelect  = (id) => {
+			clearBlocks(".accordian-content > *");
+			startTyping(`#${id} + .accordian-content > *`, typewriterElements);
+			document.querySelectorAll("label.glow").forEach(el => el.classList.remove("glow"));
+			document.querySelector(`[for=${id}]`).classList.add("glow");
+			window.requestAnimationFrame(typeWriterTick);
+			window.scroll(0,0)
+		} 
 
 		document.querySelector(".accordians").addEventListener("change", (event) => {
-			let target = event.target;
-			let animEnd = () => {
-				target.removeEventListener("transitionend", animEnd);
-				window.requestAnimationFrame(() => {
-					// SHOULD SCROLL TO VIEW
-					//target.scrollIntoView({ behavior: "smooth", block: "nearest" });
-				})
-			}
-			target.parentElement.addEventListener("transitionend", animEnd);
+			let id = event.target.id;
+			doSelect(id);
 		});
+
+		let params = new URLSearchParams(document.location.search.substring(1));
+		let service = params.get("service");
+		if(!service) service = "website";
+		document.querySelector("#" + service).checked = true;
+		doSelect(service);
 	});
 </script>
+<div class="accord">
+<div class="labels">
+	<label class="accordian-label" for="website">
+		<h2><span class="svg-icon">&#xf1c9;</span></h2>
+	</label>
+	<label class="accordian-label" for="webapp">
+		<h2><span class="svg-icon">&#xf120;</span></h2>
+	</label>
+	<label class="accordian-label" for="infra">
+		<h2><span class="svg-icon">&#xf233;</span></h2>
+	</label>
+	<label class="accordian-label" for="seo">
+		<h2><span class="svg-icon">&#xe802;</span></h2>
+	</label>
+</div>
 <div class="accordians">
 	<div class="accordian">
 		<input type="radio" name="service" id="website" />
-		<label class="accordian-label" for="website">
-			<h1><span class="svg-icon">&#xf1c9;</span> Website development</h1>
-		</label>
 		<div class="accordian-content">
+			<h1>Website Development</h1>
 			<p>Your website is the start of your online identity, I can help make sure it represents who
 				you are.</p>
 			<h2>Tweaks to existing sites</h2>
@@ -47,10 +65,8 @@ title: services
 	</div>
 	<div class="accordian">
 		<input type="radio" name="service" id="webapp" />
-		<label class="accordian-label" for="webapp">
-			<h1><span class="svg-icon">&#xf120;</span> Web App Development</h1>
-		</label>
 		<div class="accordian-content">
+			<h1>Web App Development</h1>
 			<p>Have a web application that needs to be brought into the world? My experience with
 				fullstack development can help realize your vision from start to finish.</p>
 
@@ -68,10 +84,8 @@ title: services
 	</div>
 	<div class="accordian">
 		<input type="radio" name="service" id="infra" />
-		<label class="accordian-label" for="infra">
-			<h1><span class="svg-icon">&#xf233;</span> Hosting and Infrastructure</h1>
-		</label>
 		<div class="accordian-content">
+			<h1>Hosting Infrastructure</h1>
 			<p>Infrastructure is the backbone of your website. I can make sure yours is sustainably
 				fulfilling your needs. </p>
 
@@ -90,10 +104,8 @@ title: services
 	</div>
 	<div class="accordian">
 		<input type="radio" name="service" id="seo" />
-		<label class="accordian-label" for="seo">
-			<h1><span class="svg-icon">&#xe802;</span> SEO and Analytics</h1>
-		</label>
 		<div class="accordian-content">
+			<h1>SEO and Analytics</h1>
 			<p>I can help you find out who is visiting your site, from where and bring in new visitors.
 			</p>
 
@@ -110,4 +122,5 @@ title: services
 
 		</div>
 	</div>
+</div>
 </div>
