@@ -11,7 +11,7 @@ title: services
 
 		doSelect  = (id) => {
 			clearBlocks(".accordian-content > *");
-			startTyping(`#${id} + .accordian-content > *`, typewriterElements);
+			startTyping(`#${id} + .accordian-content > * :nth-child(29n+1)`, typewriterElements);
 			document.querySelectorAll("label.glow").forEach(el => el.classList.remove("glow"));
 			document.querySelector(`[for=${id}]`).classList.add("glow");
 			window.requestAnimationFrame(typeWriterTick);
@@ -33,16 +33,16 @@ title: services
 <div class="accord">
 <div class="labels">
 	<label class="accordian-label" for="website">
-		<h2><span class="svg-icon">&#xf1c9;</span></h2>
+		<h1><span class="svg-icon">&#xf1c9;</span></h1>
 	</label>
 	<label class="accordian-label" for="webapp">
-		<h2><span class="svg-icon">&#xf120;</span></h2>
+		<h1><span class="svg-icon">&#xf120;</span></h1>
 	</label>
 	<label class="accordian-label" for="infra">
-		<h2><span class="svg-icon">&#xf233;</span></h2>
+		<h1><span class="svg-icon">&#xf233;</span></h1>
 	</label>
 	<label class="accordian-label" for="seo">
-		<h2><span class="svg-icon">&#xe802;</span></h2>
+		<h1><span class="svg-icon">&#xe802;</span></h1>
 	</label>
 </div>
 <div class="accordians">

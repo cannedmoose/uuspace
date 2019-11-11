@@ -1,4 +1,4 @@
-.showing .cursor {
+.cursor {
   opacity: 1;
   background-color: white;
   color: white;
@@ -7,7 +7,7 @@
   text-shadow: none;
 }
 
-.showing .blink {
+.blink {
   animation: blink-caret 1.5s step-end infinite;
 }
 

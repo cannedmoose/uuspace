@@ -9,23 +9,6 @@
 	Here's the flow:
 	To start typewriting pass a selector
 	Blocks have a next selector
-
-	IDEAS:
-	GLOBAL setInterval for letter update function
-	only trigers animation frame if we have updates
-
-	per cursor set interval (but they're all probs changing at the same time)
-
-	CSS SELECTORS
-	Give relevent elements a "CURSOR" class
-	cursor child nodes get styles applied
-	// FUCK THIS IS GONNA BE FUCKY
-	I LIKE IT THOUGH
-
-	basic idea:
-	start typing adds "cursor" class to the given elements
-	// HOW DO WE TELL WHEN
-
 	*/
 
 	let typewriterElements = []
@@ -33,11 +16,12 @@
 		document.querySelectorAll(selector).forEach(el => {
 			accum.push({
 				el,
+				prevEl: undefined,
+				direction: "forward",
+				lastUpdate: 0,
 				timeout: 0,
-				count: 0,
-				textLength: parseInt(el.dataset.textLength | "0"),
 				startDelay: parseInt(el.dataset.startDelay | "0"),
-				letterDelay: parseInt(el.dataset.letterDelay | "0"),
+				letterDelay: parseInt(el.dataset.letterDelay | "50"),
 				endDelay: parseInt(el.dataset.endDelay | "0"),
 				nextSelector: el.dataset.nextSelector
 			})
@@ -47,45 +31,56 @@
 	function typeWriterTick(timestamp) {
 		result = []
 		for (let i = 0; i < typewriterElements.length; i++) {
+			// Each represents a cursor object
 			let vals = typewriterElements[i];
-			let { el, timeout, count, textLength, startDelay, letterDelay, endDelay, nextSelector } = vals;
-			if (timestamp <= timeout) {
+			let { el, prevEl, direction, lastUpdate, timeout, startDelay, letterDelay, endDelay, nextSelector } = vals;
+			if ((timestamp <= lastUpdate + timeout) && lastUpdate !== 0) {
+				//console.log(timestamp, lastUpdate, timeout);
 				result.push(vals);
 				//console.log("SKIP", timestamp, timeout);
 				continue;
 			}
 
-			vals.count += 1;
-			if (count == 0) {
-				console.log("START", timestamp);
-				el.classList.add("showing");
-				el.firstElementChild.classList.add("cursor");
-				el.firstElementChild.classList.add("blink");
-				vals.timeout = timestamp + startDelay;
+			/*if(timestamp > 500) {
+				return;
+			}*/
+
+			let nextNode = el.nextElementSibling;
+			vals.lastUpdate = timestamp;
+
+			if (lastUpdate == 0 && nextNode) {
+				el.classList.add("cursor");
+				el.classList.add("blink");
+				el.classList.add("visible");
+				vals.prevEl = el;
+				vals.el = nextNode;
+				vals.timeout = startDelay;
 				result.push(vals);
-			} else if (count > textLength + 1) {
-				console.log("END1", timestamp);
-				el.classList.remove("showing");
-				el.classList.remove("toshow");
-				if (nextSelector) {
-					startTyping(nextSelector, result);
+			} else if(!nextNode || nextNode.matches(".visible,.cursor")) {
+				if (el.matches(".done")) {
+					el.classList.remove("cursor");
+					el.classList.remove("blink");
+				} else {
+					if(prevEl) {
+						prevEl.classList.remove("cursor");
+						prevEl.classList.remove("blink");
+					}
+					el.classList.add("cursor");
+					el.classList.add("blink");
+					el.classList.add("visible");
+					el.classList.add("done");
+					vals.timeout = endDelay;
+					result.push(vals);
 				}
-			}
-			else if (count > textLength) {
-				console.log("END2", timestamp);
-				// TODO(P1) maybe combine this and bottom)
-				// Note last span is an added one just to allow blinking cursor.
-				el.lastElementChild.classList.add("cursor");
-				el.lastElementChild.classList.add("blink");
-				vals.timeout = timestamp + endDelay;
-				result.push(vals);
 			} else {
-				console.log("LETTER", timestamp);
-				el.children[count - 1].classList.add("visible");
-				el.children[count - 1].classList.remove("cursor");
-				el.children[count - 1].classList.remove("blink");
-				el.children[count].classList.add("cursor");
-				vals.timeout = timestamp + letterDelay;
+				// Middle node
+				prevEl.classList.remove("cursor");
+				prevEl.classList.remove("blink");
+				el.classList.add("cursor");
+				el.classList.add("visible");
+				vals.el = nextNode;
+				vals.prevEl = el;
+				vals.timeout = letterDelay;
 				result.push(vals);
 			}
 		}
