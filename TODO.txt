@@ -1,10 +1,10 @@
-P1 tweak home page text appearence, should be faster for everything (complete in like a second)
-P1 favicon
-P1 LOAD BARRIER... wait for fonts to load before we show anything...
-P1 Fix scroll effects...
-P2 GLowing font, make fonts actually glow...
-
-SEO:
-Set up open analytics
-Add sitemap, robots.txt
-Add Meta tags
+P1 fix services accordian (should have typewriter effect)
+P1 allow for faster text (multi letters per tick)
+P2 revisit menu 
+P2 Glowing font, make fonts actually glow...
+p3 Animated title
+P3 Tweak homepage speed
+P3 Fix scroll effects...
+P3 LOAD BARRIER...
+	Maybe not needed if we have typewriter effects on other pages
+P3 Add Meta tags (probs not needed)
