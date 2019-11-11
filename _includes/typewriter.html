@@ -10,10 +10,22 @@
 	To start typewriting pass a selector
 	Blocks have a next selector
 
-	do request animation frame (recursive)
-	Check if any of the current blocks should display a letter
-	if so show it
-	if they finish begin next block.
+	IDEAS:
+	GLOBAL setInterval for letter update function
+	only trigers animation frame if we have updates
+
+	per cursor set interval (but they're all probs changing at the same time)
+
+	CSS SELECTORS
+	Give relevent elements a "CURSOR" class
+	cursor child nodes get styles applied
+	// FUCK THIS IS GONNA BE FUCKY
+	I LIKE IT THOUGH
+
+	basic idea:
+	start typing adds "cursor" class to the given elements
+	// HOW DO WE TELL WHEN
+
 	*/
 
 	let typewriterElements = []

@@ -1,7 +1,11 @@
+P1 Fix service mobile sizing
+P1 Finish multi cursor
 P1 fix services accordian (should have typewriter effect)
-P1 allow for faster text (multi letters per tick)
+P2 Try multi letters per tick per cursor
+
 P2 revisit menu 
 P2 Glowing font, make fonts actually glow...
+
 p3 Animated title
 P3 Tweak homepage speed
 P3 Fix scroll effects...
