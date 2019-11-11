@@ -1,3 +1,6 @@
+<style id="styler">
+</style>
+
 <script>
 	/**
 	Cool typewriter effect. 
@@ -12,83 +15,71 @@
 	*/
 
 	let typewriterElements = []
+	let endersGame = new Map();
+	let LAST = 0;
 	function startTyping(selector, accum) {
+		return;
 		document.querySelectorAll(selector).forEach(el => {
-			accum.push({
-				el,
-				prevEl: undefined,
-				direction: "forward",
-				lastUpdate: 0,
-				timeout: 0,
-				startDelay: parseInt(el.dataset.startDelay | "0"),
-				letterDelay: parseInt(el.dataset.letterDelay | "50"),
-				endDelay: parseInt(el.dataset.endDelay | "0"),
-				nextSelector: el.dataset.nextSelector
-			})
+			el.classList.add("cursey");
+		});
+
+		document.querySelectorAll(selector).forEach(oel => {
+			let el = oel;
+			let c = 0;
+			while (el.nextElementSibling && !el.nextElementSibling.classList.contains("cursey")) {
+				c += 1;
+				el = el.nextElementSibling;
+			}
+
+			if (c > LAST) LAST = c;
+
+			if (endersGame.has(c)) {
+				endersGame.get(c).push(oel)
+			} else {
+				endersGame.set(c, [oel]);
+ 			}
 		});
 	}
 
+	let lastUpdate = 0;
+	let styler = document.querySelector("#styler");
+	let count = 0;
 	function typeWriterTick(timestamp) {
-		result = []
-		for (let i = 0; i < typewriterElements.length; i++) {
-			// Each represents a cursor object
-			let vals = typewriterElements[i];
-			let { el, prevEl, direction, lastUpdate, timeout, startDelay, letterDelay, endDelay, nextSelector } = vals;
-			if ((timestamp <= lastUpdate + timeout) && lastUpdate !== 0) {
-				//console.log(timestamp, lastUpdate, timeout);
-				result.push(vals);
-				//console.log("SKIP", timestamp, timeout);
-				continue;
-			}
-
-			/*if(timestamp > 500) {
-				return;
-			}*/
-
-			let nextNode = el.nextElementSibling;
-			vals.lastUpdate = timestamp;
-
-			if (lastUpdate == 0 && nextNode) {
-				el.classList.add("cursor");
-				el.classList.add("blink");
-				el.classList.add("visible");
-				vals.prevEl = el;
-				vals.el = nextNode;
-				vals.timeout = startDelay;
-				result.push(vals);
-			} else if(!nextNode || nextNode.matches(".visible,.cursor")) {
-				if (el.matches(".done")) {
-					el.classList.remove("cursor");
-					el.classList.remove("blink");
-				} else {
-					if(prevEl) {
-						prevEl.classList.remove("cursor");
-						prevEl.classList.remove("blink");
-					}
-					el.classList.add("cursor");
-					el.classList.add("blink");
-					el.classList.add("visible");
-					el.classList.add("done");
-					vals.timeout = endDelay;
-					result.push(vals);
-				}
-			} else {
-				// Middle node
-				prevEl.classList.remove("cursor");
-				prevEl.classList.remove("blink");
-				el.classList.add("cursor");
-				el.classList.add("visible");
-				vals.el = nextNode;
-				vals.prevEl = el;
-				vals.timeout = letterDelay;
-				result.push(vals);
-			}
+		// bow out early...
+		if (timestamp < lastUpdate + 50) {
+			window.requestAnimationFrame(typeWriterTick);
+			return;
 		}
 
-		// Update results, request next frame.
-		typewriterElements = result;
-		if (result.length > 0) {
-			window.requestAnimationFrame(typeWriterTick);
+		console.log("UPDATE", timestamp, lastUpdate);
+
+		lastUpdate = timestamp;
+
+		styler.innerHTML = `
+		.cursey :nth-child(n + 1):nth-child(-n + ${count}) {
+			opacity : 1;
+		}
+
+		.cursey :nth-child(${count + 1}){
+			opacity: 1;
+			background-color: white;
+			fill: white;
+			box-shadow: 0px 0px 2px aqua, 0px 0px 10px aqua;
+			text-shadow: none;
+		}
+		`;
+		count += 1;
+
+	/*	let enders = endersGame.get(count);
+		if (enders) {
+			enders.forEach(el => {
+				el.classList.remove("cursey");
+				el.classList.add("visey");
+			});
+		}*/
+
+		if (count <= LAST){
+			window.setTimeout(() => window.requestAnimationFrame(typeWriterTick), 50);
 		}
 	}
 
@@ -108,15 +99,30 @@
 
 	function initTypeWritier(selector) {
 		// Create a span for each letter.
+		// Contained in a span per word.
+		// TODO should have multiple ways to do this
+		// eg break randomly instead of at word
+		// dont break
+		// etc.
 		document.querySelectorAll(selector).forEach(el => {
 			let text = el.innerText;
+			let s = text.split(" ");
 			el.setAttribute("data-text-length", text.length);
-			let h = ""
-			for (let i = 0; i < text.length; i++) {
-				h += `<span>${text.charAt(i)}</span>`
+			let result = "";
+
+			for (j = 0; j < s.length; j ++) {
+				let h = ""
+				for (let i = 0; i < s[j].length; i++) {
+					h += `<span>${s[j].charAt(i)}</span>`
+				}
+				h += "<span> </span>"
+				result += `<span class="cursey">${h}</span>`
+				if (s[j].length > LAST) {
+					LAST = s[j].length;
+				}
 			}
-			h += `<span class="endline">.</span>`
-			el.innerHTML = h;
+
+			el.innerHTML = result;
 		});
 	}
 </script>
