@@ -18,9 +18,8 @@
 			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
 			g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
 			g.onerror = () => {
-				s.insertAdjacentHTML('afterend', `<img src="//matomo.u-u.space/matomo.php?idsite=1&amp;rec=1"
-					 style="border:0;" alt="" />`);
-				console.log(s);
+				s.insertAdjacentHTML('afterend', `<p><img src="//matomo.u-u.space/matomo.php?idsite=1&amp;rec=1"
+					 style="border:0;" alt="" /></p>`);
 			};
 		})();
 	</script>
