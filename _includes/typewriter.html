@@ -13,116 +13,97 @@
 	To start typewriting pass a selector
 	Blocks have a next selector
 	*/
+ 
+	function createCursors(selector, splitter) {
+		// selector selects elements that should only contain text
+		// splitter splits that text into a bunch of chunks
+		// each chunk gets a cursor
 
-	let typewriterElements = []
-	let endersGame = new Map();
-	let LAST = 0;
-	function startTyping(selector, accum) {
-		return;
+		let styleEl = document.createElement("style");
+		document.querySelector("head").appendChild(styleEl);
+
+		let maxChunk = 0;
+		// Need to add style node just for this call.
 		document.querySelectorAll(selector).forEach(el => {
-			el.classList.add("cursey");
-		});
-
-		document.querySelectorAll(selector).forEach(oel => {
-			let el = oel;
-			let c = 0;
-			while (el.nextElementSibling && !el.nextElementSibling.classList.contains("cursey")) {
-				c += 1;
-				el = el.nextElementSibling;
-			}
-
-			if (c > LAST) LAST = c;
-
-			if (endersGame.has(c)) {
-				endersGame.get(c).push(oel)
-			} else {
-				endersGame.set(c, [oel]);
- 			}
-		});
-	}
-
-	let lastUpdate = 0;
-	let styler = document.querySelector("#styler");
-	let count = 0;
-	function typeWriterTick(timestamp) {
-		// bow out early...
-		if (timestamp < lastUpdate + 50) {
-			window.requestAnimationFrame(typeWriterTick);
-			return;
-		}
-
-		console.log("UPDATE", timestamp, lastUpdate);
-
-		lastUpdate = timestamp;
-
-		styler.innerHTML = `
-		.cursey :nth-child(n + 1):nth-child(-n + ${count}) {
-			opacity : 1;
-		}
-
-		.cursey :nth-child(${count + 1}){
-			opacity: 1;
-			background-color: white;
-			fill: white;
-			box-shadow: 0px 0px 2px aqua, 0px 0px 10px aqua;
-			text-shadow: none;
-		}
-		`;
-		count += 1;
-
-	/*	let enders = endersGame.get(count);
-		if (enders) {
-			enders.forEach(el => {
-				el.classList.remove("cursey");
-				el.classList.add("visey");
-			});
-		}*/
-
-		if (count <= LAST){
-			window.setTimeout(() => window.requestAnimationFrame(typeWriterTick), 50);
-		}
-	}
-
-	function clearBlocks(selector) {
-		document.querySelectorAll(selector).forEach(el => {
-			el.classList.remove("showing");
-			el.classList.add("toshow");
-			el.querySelectorAll(":scope .cursor").forEach(el => {
-				el.classList.remove("cursor");
-				el.classList.remove("blink");
-			})
-			el.querySelectorAll(":scope .visible").forEach(el => {
-				el.classList.remove("visible");
-			})
-		})
-	}
-
-	function initTypeWritier(selector) {
-		// Create a span for each letter.
-		// Contained in a span per word.
-		// TODO should have multiple ways to do this
-		// eg break randomly instead of at word
-		// dont break
-		// etc.
-		document.querySelectorAll(selector).forEach(el => {
-			let text = el.innerText;
-			let s = text.split(" ");
-			el.setAttribute("data-text-length", text.length);
-			let result = "";
-
-			for (j = 0; j < s.length; j ++) {
-				let h = ""
-				for (let i = 0; i < s[j].length; i++) {
-					h += `<span>${s[j].charAt(i)}</span>`
+			// Skip out on non-leaf nodes.
+			if(el.firstElementChild) return;
+			let split = splitter(el.innerText);
+			let elHTML = "";
+			for (i = 0; i < split.length; i++) {
+				let chunk = split[i];
+				if(chunk.length > maxChunk) maxChunk = chunk.length;
+				let chunkHTML = "";
+				for (j = 0; j < chunk.length; j++) {
+					chunkHTML += `<span>${chunk.charAt(j)}</span>`
 				}
-				h += "<span> </span>"
-				result += `<span class="cursey">${h}</span>`
-				if (s[j].length > LAST) {
-					LAST = s[j].length;
-				}
+				console.log(el.innerText);
+				elHTML += `<span class="curs0r">${chunkHTML}</span>`
 			}
-
-			el.innerHTML = result;
+			el.innerHTML = elHTML;
 		});
+
+		// TODO pass in styling...
+		let blanker = `
+			${selector} > .curs0r > * {
+				color: black;
+				text-shadow: none;
+			}
+		`
+
+		let count = 0;
+		let tick = () => {
+			styleEl.innerHTML = `
+				${blanker}
+				${selector} > .curs0r > :nth-child(n + 1):nth-child(-n + ${count}) {
+					color: white;
+					text-shadow: inherit;
+				}
+
+				${selector} > .curs0r > :nth-child(${count + 1}){
+					background-color: white;
+					color: white;
+					fill: white;
+					text-shadow: none;
+				}
+				`;
+				count += 1;
+				return count > maxChunk;
+		}
+
+		let reset = () => {
+			count = 0;
+			styleEl.innerHTML = `${blanker}`;
+		}
+
+		reset();
+
+		return {tick, reset};
+	}
+
+	function animatedCursor(selector, splitter, timeout, doneCallback) {
+		let {tick, reset} = createCursors(selector, splitter);
+		let oreset = reset;
+
+		let handle = undefined;
+		let play = () => {
+			if(handle) {
+				return;
+			}
+			handle = window.setInterval(() => {
+				if(tick() && handle) {
+					window.clearInterval(handle);
+					handle = undefined;
+					if(doneCallback) doneCallback();
+				}
+			}, timeout);
+		}
+
+		reset = () => {
+			if (handle) window.clearInterval(handle);
+			handle = undefined;
+			oreset();
+		}
+
+		return {play, reset};
 	}
 </script>

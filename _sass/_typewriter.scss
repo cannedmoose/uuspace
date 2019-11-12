@@ -1,18 +1,5 @@
-.cursor {
-  opacity: 1;
-  background-color: white;
-  color: white;
-  fill: white;
-  box-shadow: 0px 0px 2px aqua, 0px 0px 10px aqua;
-  text-shadow: none;
-}
-
 .blink {
   animation: blink-caret 1.5s step-end infinite;
-}
-
-.visible {
-  opacity: 1 !important;
 }
 
 // TODO(P2) Make animation not jump around so much :/
@@ -24,13 +11,4 @@
   50% {
     opacity: 1;
   }
-}
-
-.toshow * * {
-  opacity: 0;
-}
-
-.endline {
-  opacity: 0;
-  margin-left: 0.1em;
 }

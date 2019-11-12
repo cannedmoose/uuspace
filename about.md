@@ -3,6 +3,19 @@ layout: default
 title: about
 ---
 
+{%- include typewriter.html -%}
+
+<script>
+	window.addEventListener('DOMContentLoaded', (event) => {
+		let textCursor = animatedCursor(`.wrapper *`, (t)=>{
+				let r = t.split(" ");
+				for (let i = 0; i < r.length - 1; i++) r[i]+= " ";
+				return r;
+			}, 30);
+		textCursor.play();
+	});
+</script>
+
 # About Me
 
 I am a Sydney native who has always had a passion for technology. I've been programming since highschool and graduated from the University of Sydney with a Comp Sci/Math double major.

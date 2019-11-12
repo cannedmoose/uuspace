@@ -5,16 +5,29 @@ title: services
 {%- include typewriter.html -%}
 
 <script>
+	const services = ["website","webapp", "infra", "seo"]
 	window.addEventListener('DOMContentLoaded', (event) => {
-		initTypeWritier(".accordian-content > *");
-		clearBlocks(".accordian-content > *")
+		const serviceCursors = new Map();
+		services.forEach((service) => {
+			let cursors = animatedCursor(`#${service} ~ .accordian-content > *`, (t)=>{
+				let r = t.split(" ");
+				for (let i = 0; i < r.length - 1; i++) r[i]+= " ";
+				return r;
+			}, 30);
+			serviceCursors.set(service, cursors);
+		});
 
 		doSelect  = (id) => {
-			clearBlocks(".accordian-content > *");
-			startTyping(`#${id} + .accordian-content > * :nth-child(29n+1)`, typewriterElements);
+			serviceCursors.forEach((v, k) => {
+				if(k == id) {
+					console.log(k, v);
+					v.play();
+				} else {
+					v.reset();
+				}
+			})
 			document.querySelectorAll("label.glow").forEach(el => el.classList.remove("glow"));
 			document.querySelector(`[for=${id}]`).classList.add("glow");
-			window.requestAnimationFrame(typeWriterTick);
 			window.scroll(0,0)
 		} 
 
@@ -85,7 +98,7 @@ title: services
 	<div class="accordian">
 		<input type="radio" name="service" id="infra" />
 		<div class="accordian-content">
-			<h1>Hosting Infrastructure</h1>
+			<h1>Hosting and Infrastructure</h1>
 			<p>Infrastructure is the backbone of your website. I can make sure yours is sustainably
 				fulfilling your needs. </p>
 
