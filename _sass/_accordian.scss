@@ -23,8 +23,10 @@
       @extend %neon-glow;
     }
   }
-  &-label h1 {
+  &-label {
+    font-size: 1.5em;
     width: 100%;
+    text-align: center;
   }
   &-content {
     display: none;
