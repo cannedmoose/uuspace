@@ -16,6 +16,9 @@ title: contact
 		window.addEventListener('load', (event) => {
   		window.requestAnimationFrame(textCursor.play);
 		});
+		window.addEventListener('load', (event) => {
+  		window.requestAnimationFrame(textCursor.play);
+		});
 	});
 </script>
 
