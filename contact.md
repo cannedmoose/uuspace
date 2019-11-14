@@ -13,11 +13,14 @@ title: contact
 				return r;
 			}, 30);
 		textCursor.play();
+		window.addEventListener('load', (event) => {
+  		window.requestAnimationFrame(textCursor.play);
+		});
 	});
 </script>
 
 # Get in touch
 
-I'm currently taking on new work, you can contact me by emailing <a class="email" href="mailto:me@u-u.space">me@u-u.space</a>
+I'm currently taking on new work.
 
-I usually reply within 24 hours.
+If you have an idea of your project, please fill in the form below and I will get back to you within 24 hours.

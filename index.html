@@ -17,8 +17,9 @@ sitemap:
 				return r;
 			}, 30);
 
-		//let nameCursor = animatedCursor(`h1`, (t)=>[t], 50, textCursor.play);
-		window.requestAnimationFrame(textCursor.play);
+		window.addEventListener('load', (event) => {
+  		window.requestAnimationFrame(textCursor.play);
+		});
 	});
 </script>
 
@@ -27,12 +28,13 @@ sitemap:
 		Callan McNamara
 	</h1>
 	<p class="type">
-		I'm a Sydney based freelance developer with a passion for creating amazing
-		online spaces. I offer full service design and development of websites and
-		web apps across a range of technologies.
+		Based in Sydney, Australia.
 	</p>
 	<p class="type">
-		I can help with
+		Callan is a freelance web developer with a passion for creating unique online spaces.
+	</p>
+	<p class="type">
+		Offering full-service website and web app design and development across a range of technologies, Callan can help with projects needing:
 	</p>
 	<p>
 		<a class="type" href="/services?service=website">Website Design and Development</a>
@@ -42,9 +44,6 @@ sitemap:
 	</p>
 	<p>
 		<a class="type" href="/services?service=infra">Hosting and Infrastructure Management</a>
-	</p>
-	<p>
-		<a class="type" href="/services?service=seo">SEO and Web Analytics</a>
 	</p>
 
 	<p>

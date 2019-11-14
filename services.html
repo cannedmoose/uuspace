@@ -5,7 +5,7 @@ title: services
 {%- include typewriter.html -%}
 
 <script>
-	const services = ["website","webapp", "infra", "seo"]
+	const services = ["website","webapp", "infra"]
 	window.addEventListener('DOMContentLoaded', (event) => {
 		const serviceCursors = new Map();
 		services.forEach((service) => {
@@ -40,7 +40,9 @@ title: services
 		let service = params.get("service");
 		if(!service) service = "website";
 		document.querySelector("#" + service).checked = true;
-		doSelect(service);
+		window.addEventListener('load', (event) => {
+  		doSelect(service);
+		});
 	});
 </script>
 <div class="accord">
@@ -54,85 +56,64 @@ title: services
 	<label class="accordian-label" for="infra">
 		<span class="svg-icon">&#xf233;</span>
 	</label>
-	<label class="accordian-label" for="seo">
-		<span class="svg-icon">&#xe802;</span>
-	</label>
 </div>
 <div class="accordians">
 	<div class="accordian">
 		<input type="radio" name="service" id="website" />
 		<div class="accordian-content">
 			<h1>Website Development</h1>
-			<p>Your website is the start of your online identity, I can help make sure it represents who
-				you are.</p>
+			<p>Your website is your online identity. I can help make sure it represents who you are, looks good and runs well while doing it.</p>
 			<h2>Tweaks to existing sites</h2>
-			<p>Your site doesn't quite look right? I can fix that. Whether it's a Shopify Storefront,
-				WordPress blog or an original creation my indepth knowledge of Python, PHP, HTML, CSS and
-				Javascript make any changes a breeze.</p>
-
+			<p>Your site doesn't quite look right? I can fix that.</p>
+			<p>
+				I can help alter existing sites to improve aesthetics, functionality or simply to add a personal touch.
+			</p>
+			<p>
+				Whether it's a Shopify storefront, WordPress blog or an original, interactive creation, my in-depth knowledge of web programming makes editing websites a breeze. </p>
+			</p>
 			<h2>Design and Development</h2>
-
-			<p>Want an online presence that's different? I can create it. Make a unique hook that is on
-				brand and makes an impression for your visitors.</p>
-		</div>
+			<p>Want an online presence that's different? I can create it.</p>
+			<p>
+				Spark your client’s curiosity with a unique hook that leaves a lasting impression.
+			</p>
+			<p>
+				Using my extensive experience in Python, PHP, HTML, CSS and Javascript, I can help bring your dreams into reality.
+			</p>
+			<h2>Problem solving</h2>
+			<p>
+				Not sure what is going wrong? I can help diagnose issues that occur when sites are viewed on different browsers or devices to make your online presence consistent and professional. 
+			</p>
+</div>
 	</div>
 	<div class="accordian">
 		<input type="radio" name="service" id="webapp" />
 		<div class="accordian-content">
 			<h1>Web App Development</h1>
-			<p>Have a web application that needs to be brought into the world? My experience with
-				fullstack development can help realize your vision from start to finish.</p>
+			<p>Have a web application that needs to be brought into the world? My experience with fullstack development can help realise your vision from start to finish.</p>
 
 			<h2>Prototyping and MVP</h2>
 
-			<p>Turn your idea into a slick prototype that will turn heads. I will work with you to refine
-				your idea into an MVP that works great on the mobile and desktop web. </p>
+			<p>Turn your idea into a slick prototype that will turn heads. I will work with you to refine your idea into an MVP that works great on desktop and mobile.</p>
 
 			<h2>Ongoing Development</h2>
 
-			<p>As your ideas evolves so should your app! I can provide ongoing development for features
-				and functionality to keep you and your users happy. </p>
-
+			<p>As your ideas evolve so should your app! I can provide ongoing development for features and functionality to keep you and your users happy.</p>
 		</div>
 	</div>
 	<div class="accordian">
 		<input type="radio" name="service" id="infra" />
 		<div class="accordian-content">
 			<h1>Hosting and Infrastructure</h1>
-			<p>Infrastructure is the backbone of your website. I can make sure yours is sustainably
-				fulfilling your needs. </p>
+			<p>Infrastructure is the backbone of your website. I can make sure yours is sustainably and efficiently fulfilling your needs.</p>
 
 			<h2>Domain management and hosting</h2>
 
-			<p>Need a new domain or to tweak your DNS settings? Domain management is simple until it
-				isn't. I can help you navigate setting up a new domain, email, configuring subdomains and
-				site verifications or even switch hosting no matter who your registerer is.</p>
+			<p>Need a new domain or to tweak your DNS settings? From adding a second (or third, or fourth) email to moving your entire site to a new domain, switching hosting or configuring subdomains, I can help you manage your domain with ease - no matter where your domain is registered!</p>
 
 			<h2>Database update, migration and export</h2>
 
-			<p>I have years of experience in traditional relational databases (MySQL, PostgreSQL) and
-				NoSQL datastores (MongoDB, Redis). I can help setup, transfer, maintain and extract value
-				from your data.</p>
-		</div>
-	</div>
-	<div class="accordian">
-		<input type="radio" name="service" id="seo" />
-		<div class="accordian-content">
-			<h1>SEO and Analytics</h1>
-			<p>I can help you find out who is visiting your site, from where and bring in new visitors.
-			</p>
-
-			<h2>SEO</h2>
-
-			<p>Want to increase your search rank but don't know where to start? I can make sure your pages
-				are optimized for search engines and give you the tools to keep track of where your
-				customers are coming from. </p>
-
-			<h2>Analytics</h2>
-
-			<p>Want to know what people are doing on your site? I can set up an analytics dashboard so you
-				can gain key insights into how people interact with your site.</p>
-
+			<p>Have multiple databases, mismatching data or simply need your data in an easily understandable format?</p>
+<p>I have years of experience in traditional relational databases (MySQL, PostgreSQL) and NoSQL datastores (MongoDB, Redis). I can help setup, transfer, maintain and extract value from your data. </p>
 		</div>
 	</div>
 </div>

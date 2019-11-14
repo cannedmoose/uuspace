@@ -1,7 +1,9 @@
+P1 Email form
+P1 look into loading times.
+
+P2 look into Adwords
 P2 revisit menu 
 
 p3 Animated title
 P3 Fix scroll effects...
-P3 LOAD BARRIER...
-	Maybe not needed if we have typewriter effects on other pages
 P3 Add Meta tags (probs not needed)
