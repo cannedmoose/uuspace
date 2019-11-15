@@ -89,6 +89,13 @@
     min-width: 20em;
     height: 15em;
   }
+
+  @include media-query($on-palm) {
+    input[type="text"],
+    textarea {
+      min-width: 15em;
+    }
+  }
 }
 
 .form-response {
