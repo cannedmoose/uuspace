@@ -1,4 +1,9 @@
-P1 Email form
+P1 remove underline
+P1 Clean up + document form
+P1 loading indicator for contact form
+	- Flashing cursor, displays text after it's done.
+P1 try header splitting as all one cursor
+
 P1 look into loading times.
 
 P2 look into Adwords
