@@ -1,10 +1,13 @@
-P1 remove underline
+P1 make underlines appear/reappear with cursor (maybe switch back to opacity...)
 P1 Clean up + document form
 P1 loading indicator for contact form
 	- Flashing cursor, displays text after it's done.
-P1 try header splitting as all one cursor
+P1 make splitting better (all in one, multiple words per cursor)
+P1 get font embedding to work
 
 P1 look into loading times.
+
+P1 Get a build process working
 
 P2 look into Adwords
 P2 revisit menu 

@@ -27,6 +27,7 @@
 		document.querySelectorAll(selector).forEach(el => {
 			// Skip out on non-leaf nodes.
 			if(el.firstElementChild) return;
+			// TODO (make pass this element)
 			let split = splitter(el.innerText);
 			let elHTML = "";
 			for (i = 0; i < split.length; i++) {
