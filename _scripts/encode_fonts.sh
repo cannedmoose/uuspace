@@ -15,8 +15,8 @@ do
 @font-face {
     font-family: '$family';
     src: url(data:application/font-woff2;charset=utf-8;base64,$data) format('$format');
-    font-weight: '$weight';
-    font-style: '$style';
+    font-weight: $weight;
+    font-style: $style;
 }
 
 EOD

@@ -131,6 +131,7 @@ h6 {
 a {
   color: $text-color;
   text-decoration: none;
+  font-weight: $heading-font-weight;
 
   &:visited {
     color: $text-color;
