@@ -38,9 +38,7 @@ title: services
 		let service = params.get("service");
 		if(!service) service = "website";
 		document.querySelector("#" + service).checked = true;
-		window.addEventListener('load', (event) => {
-  		doSelect(service);
-		});
+		doSelect(service);
 	});
 </script>
 <div class="accord">

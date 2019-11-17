@@ -10,13 +10,7 @@ title: contact
 				for (let i = 0; i < r.length - 1; i++) r[i]+= " ";
 				return r;
 			}, 30);
-		textCursor.play();
-		window.addEventListener('load', (event) => {
-  		window.requestAnimationFrame(textCursor.play);
-		});
-		window.addEventListener('load', (event) => {
-  		window.requestAnimationFrame(textCursor.play);
-		});
+		window.requestAnimationFrame(textCursor.play);
 
 		document.querySelector(".contact-form").addEventListener('submit', async (event) => {
 			event.preventDefault();

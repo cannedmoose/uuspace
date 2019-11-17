@@ -10,9 +10,7 @@ title: about
 				for (let i = 0; i < r.length - 1; i++) r[i]+= " ";
 				return r;
 			}, 30);
-		window.addEventListener('load', (event) => {
-  		window.requestAnimationFrame(textCursor.play);
-		});
+		window.requestAnimationFrame(textCursor.play);
 	});
 </script>
 
