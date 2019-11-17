@@ -3,10 +3,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+	<style>
+		{%- include fonts.css -%}
+	</style>
 
 	<link rel="shortcut icon" type="image/png" sizes="128x128" href="/assets/favicon.png">
 	<title>{{page.title}} | {{ site.title }}</title>
-	{%- include fonts.html -%}
 
 	<!-- Matomo -->
 		<img src="https://matomo.u-u.space/matomo.php?idsite=1&amp;rec=1"
