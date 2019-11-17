@@ -3,8 +3,6 @@ layout: default
 title: about
 ---
 
-{%- include typewriter.html -%}
-
 <script>
 	window.addEventListener('DOMContentLoaded', (event) => {
 		let textCursor = animatedCursor(`.wrapper *`, (t)=>{
