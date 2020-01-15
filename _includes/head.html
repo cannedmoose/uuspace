@@ -2,23 +2,18 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet"
-				href="{{ "/assets/main.css" | relative_url }}?id={{ "now" | date: "%s" }}">
+	<link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}?id={{ "now" | date: "%s" }}">
 	<style>
-		{
-			%- include fonts.css -%
-		}
-
+		{%- include fonts.css -%}
 	</style>
 	<script>
-		{% - include scripts.js -%}
+		{%- include scripts.js -%}
 	</script>
-	<link rel="shortcut icon" type="image/png" sizes="128x128"
-				href="/assets/favicon.png">
+	<link rel="shortcut icon" type="image/png" sizes="128x128" href="/assets/favicon.png">
 	<title>{{page.title}} | {{ site.title }}</title>
 
 	<!-- Matomo -->
-	<img src="https://matomo.u-u.space/matomo.php?idsite=1&amp;rec=1"
-			 style="border:0;" alt="" />
+		<img src="https://matomo.u-u.space/matomo.php?idsite=1&amp;rec=1"
+					 style="border:0;" alt="" />
 	<!--End Matomo Code-->
 </head>
