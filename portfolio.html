@@ -1,0 +1,27 @@
+---
+layout: default
+title: portfolio
+---
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    let textCursor = animatedCursor(`.wrapper *`, (t) => {
+      let r = t.split(" ");
+      for (let i = 0; i < r.length - 1; i++) r[i] += " ";
+      return r;
+    }, 30);
+    window.requestAnimationFrame(textCursor.play);
+  });
+</script>
+
+<h1 class="type">Things I've done</h1>
+
+<h2 class="type">Habits</h2>
+
+<a href="https://u-u.space/habits">
+  <p class="type">
+    A local first repeating task tracker built with elm.
+    <img src="/assets/habits.png"></img>
+  </p>
+</a>
+
+<p class="type">Watch this space, more to come...</p>

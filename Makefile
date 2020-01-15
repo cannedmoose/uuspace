@@ -9,6 +9,10 @@ fonts : $(assets/fonts/*) _scripts/encode_fonts.sh
 scripts : $(assets/scripts/*)
 	terser _assets/scripts/* -m --source-map > _includes/scripts.js
 
+.PHONY: serve
+serve:
+	jekyll serve --host 0.0.0.0
+
 .PHONY: clean
 clean:
 	rm -rf ./_site
