@@ -83,6 +83,12 @@ img {
   max-width: 100%;
   vertical-align: middle;
   border-radius: 10px;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+img[data-src] {
+  opacity: 0;
 }
 
 /**

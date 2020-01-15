@@ -7,7 +7,7 @@ fonts : $(assets/fonts/*) _scripts/encode_fonts.sh
 	_scripts/encode_fonts.sh _assets/fonts/* > _includes/fonts.css
 
 scripts : $(assets/scripts/*)
-	terser _assets/scripts/* -m --source-map > _includes/scripts.js
+	terser _assets/scripts/* > _includes/scripts.js
 
 .PHONY: serve
 serve:

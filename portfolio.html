@@ -4,12 +4,18 @@ title: portfolio
 ---
 <script>
   window.addEventListener('DOMContentLoaded', (event) => {
-    let textCursor = animatedCursor(`.wrapper *`, (t) => {
+    let textCursor = animatedCursor(`.type`, (t) => {
       let r = t.split(" ");
       for (let i = 0; i < r.length - 1; i++) r[i] += " ";
       return r;
     }, 30);
     window.requestAnimationFrame(textCursor.play);
+
+    let img = document.querySelector('img[data-src]');
+    img.setAttribute('src', img.getAttribute('data-src'));
+    img.onload = function () {
+      img.removeAttribute('data-src');
+    };
   });
 </script>
 
@@ -20,8 +26,8 @@ title: portfolio
 <a href="https://u-u.space/habits">
   <p class="type">
     A local first repeating task tracker built with elm.
-    <img src="/assets/habits.png"></img>
   </p>
+  <img data-src="/assets/habits.png"></img>
 </a>
 
 <p class="type">Watch this space, more to come...</p>

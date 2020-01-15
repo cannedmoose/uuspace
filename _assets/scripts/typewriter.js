@@ -33,7 +33,6 @@ function createCursors(selector, splitter) {
       for (j = 0; j < chunk.length; j++) {
         chunkHTML += `<span>${chunk.charAt(j)}</span>`;
       }
-      console.log(el.innerText);
       elHTML += `<span class="curs0r">${chunkHTML}</span>`;
     }
     el.innerHTML = elHTML;
