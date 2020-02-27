@@ -5,11 +5,9 @@ title: about
 
 <script>
 	window.addEventListener('DOMContentLoaded', (event) => {
-		let textCursor = animatedCursor(`.wrapper *`, (t)=>{
-				let r = t.split(" ");
-				for (let i = 0; i < r.length - 1; i++) r[i]+= " ";
-				return r;
-			}, 30);
+		let textCursor = animatedCursor(`h1`, (t)=>{
+				return [t];
+			}, 50);
 		window.requestAnimationFrame(textCursor.play);
 	});
 </script>

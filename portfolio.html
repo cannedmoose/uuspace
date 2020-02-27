@@ -4,11 +4,9 @@ title: portfolio
 ---
 <script>
   window.addEventListener('DOMContentLoaded', (event) => {
-    let textCursor = animatedCursor(`.type`, (t) => {
-      let r = t.split(" ");
-      for (let i = 0; i < r.length - 1; i++) r[i] += " ";
-      return r;
-    }, 30);
+    let textCursor = animatedCursor(`h1`, (t) => {
+      return [t];
+    }, 50);
     window.requestAnimationFrame(textCursor.play);
 
     let img = document.querySelector('img[data-src]');
@@ -20,6 +18,8 @@ title: portfolio
 </script>
 
 <h1 class="type">Things I've done</h1>
+
+<p class="type">For industry work see my <a href="assets/resume.pdf">resume</a>.</p>
 
 <h2 class="type">Habits</h2>
 
