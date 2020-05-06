@@ -9,23 +9,27 @@ title: portfolio
     }, 50);
     window.requestAnimationFrame(textCursor.play);
 
-    let img = document.querySelector('img[data-src]');
-    img.setAttribute('src', img.getAttribute('data-src'));
-    img.onload = function () {
-      img.removeAttribute('data-src');
-    };
+    let imgs = document.querySelectorAll('img[data-src]');
+    imgs.forEach(img => {
+      img.setAttribute('src', img.getAttribute('data-src'));
+      img.onload = function () {
+        img.removeAttribute('data-src');
+      };
+    });
   });
 </script>
 
 <h1 class="type">Things I've done</h1>
 
-<p class="type">For industry work see my <a href="assets/resume.pdf">resume</a>.</p>
+<p class="type">For industry work see my <a href="assets/resume.pdf">resume</a>.
+</p>
 
 <h2 class="type">Grafte</h2>
 
 <a href="https://u-u.space/grafte">
   <p class="type">
-    A customizable vector graphics editor written in Typescript (Work in Progress).
+    A customizable vector graphics editor written in Typescript (Work in
+    Progress).
   </p>
   <img data-src="/assets/grafte.png"></img>
 </a>
@@ -34,7 +38,8 @@ title: portfolio
 
 <a href="https://canned-moose.itch.io/cemetery-drive">
   <p class="type">
-    A retro NOKIA inspired gravekeeping game written in HAXE. Made for the NOKIA Jam 2 with SPIKEDOG.
+    A retro NOKIA inspired gravekeeping game written in HAXE. Made for the NOKIA
+    Jam 2 with SPIKEDOG.
   </p>
   <img data-src="/assets/cemetery.png"></img>
 </a>
@@ -43,7 +48,8 @@ title: portfolio
 
 <a href="https://canned-moose.itch.io/black-and-white">
   <p class="type">
-    A mind bending puzzle game written in Godot. Made for the 8 Bits to Infinity Jam.
+    A mind bending puzzle game written in Godot. Made for the 8 Bits to Infinity
+    Jam.
   </p>
   <img data-src="/assets/bnw.png"></img>
 </a>
