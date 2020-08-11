@@ -23,7 +23,5 @@ markdown: kramdown
 
 header_pages:
   - index.html
-  - about.md
-  - services.html
   - portfolio.html
   - contact.html
