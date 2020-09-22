@@ -1,0 +1,69 @@
+.accordians {
+  overflow: hidden;
+  margin-top: 1em;
+}
+
+.accordian {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.accordian-content {
+  display: none;
+  padding: 0 1em;
+}
+
+.accordian-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  font-size: 1.5em;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: none;
+}
+
+@media (--on-palm) {
+  .accordian-label {
+    padding: 0;
+    font-size: 0.75em;
+  }
+
+  .accordian-content {
+    font-size: 0.75em;
+  }
+
+  .accordians input:checked ~ .accordian-content {
+    max-height: 300vh;
+  }
+}
+
+.accordian-label:hover,
+.glow.accordian-label,
+.accordians input:checked + .accordian-label {
+  color: white;
+  fill: white;
+  text-shadow: 0px 0px 2px aqua, 0px 0px 20px aqua;
+  animation: 12s glower infinite;
+}
+
+.accordians input:checked ~ .accordian-content {
+  display: block;
+  padding-bottom: 1em;
+  opacity: 1;
+}
+
+.accordians input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.accord {
+  display: flex;
+  flex-direction: row;
+}

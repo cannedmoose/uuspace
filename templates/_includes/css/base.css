@@ -1,0 +1,324 @@
+/**
+ * Reset some basic elements
+ */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+  * Basic styling
+  */
+body {
+  font: var(--base-font-weight)
+    calc(var(--base-font-size) / var(--base-line-height))
+    var(--base-font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+input,
+textarea {
+  font: var(--base-font-weight)
+    calc(var(--base-font-size) / var(--base-line-height))
+    var(--base-font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: 1px solid grey;
+}
+
+/**
+  * Set `margin-bottom` to maintain vertical rhythm
+  */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure {
+  margin-bottom: calc(var(--spacing-unit) / 2);
+}
+
+/**
+  * `main` element
+  */
+main {
+  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
+}
+
+/**
+  * Images
+  */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  border-radius: 10px;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+img[data-src] {
+  opacity: 0;
+}
+
+/**
+  * Figures
+  */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: var(--small-font-size);
+}
+
+/**
+  * Lists
+  */
+ul,
+ol {
+  margin-left: var(--spacing-unit);
+}
+
+li > ul {
+  margin-bottom: 0;
+}
+
+li > ol {
+  margin-bottom: 0;
+}
+
+/**
+  * Headings
+  */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: white;
+  fill: white;
+  text-shadow: 0px 0px 2px aqua, 0px 0px 20px aqua;
+  animation: 12s glower infinite;
+  font-weight: var(--heading-font-weight);
+  font-family: var(--heading-font-family);
+}
+
+/**
+  * Links
+  */
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: var(--heading-font-weight);
+}
+
+a:visited {
+  color: var(--text-color);
+}
+
+a:hover {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+a.social-media-list:hover {
+  text-decoration: none;
+}
+
+/**
+  * Blockquotes
+  */
+blockquote {
+  color: var(--grey-color);
+  border-left: 4px solid var(--grey-color-light);
+  padding-left: calc(var(--spacing-unit) / 2);
+  font-size: 1.25rem;
+  letter-spacing: -1px;
+  font-style: italic;
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/**
+  * Code formatting
+  */
+pre,
+code {
+  font-size: 0.9375rem;
+  border: 1px solid var(--grey-color-light);
+  border-radius: 3px;
+  background-color: #eef;
+}
+
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+  overflow-x: auto;
+}
+
+pre > code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/**
+  * Wrapper
+  */
+.wrapper {
+  max-width: calc(var(--content-width) - calc(var(--spacing-unit) * 2));
+  max-width: calc(var(--content-width) - calc(var(--spacing-unit) * 2));
+  padding-right: var(--spacing-unit);
+  padding-left: calc(2 * var(--spacing-unit));
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**
+  * Icons
+  */
+.svg-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: var(--grey-color);
+  padding-right: 5px;
+  vertical-align: text-top;
+}
+
+.social-media-list li + li {
+  padding-top: 5px;
+}
+
+.header {
+  padding-left: calc(2 * var(--spacing-unit));
+}
+
+@media (--on-palm) {
+  .header {
+    padding-top: var(--spacing-unit);
+    padding-bottom: var(--spacing-unit);
+  }
+}
+
+.site-nav {
+  background-color: var(--background-color);
+  z-index: 100;
+  line-height: calc(
+    calc(var(--base-line-height) * var(--base-font-size)) * 2.25
+  );
+}
+
+.site-nav .nav-trigger {
+  display: none;
+}
+
+.site-nav .menu-icon {
+  display: none;
+}
+
+.site-nav .page-link {
+  color: var(--text-color);
+  line-height: var(--base-line-height);
+}
+
+/* Gaps between nav items, but not on the last one*/
+.site-nav .page-link:not(:last-child) {
+  margin-right: 20px;
+}
+
+@media (--on-palm) {
+  .site-nav {
+    position: absolute;
+    top: 9px;
+    right: calc(var(--spacing-unit) / 2);
+    background-color: var(--background-color);
+    border: 1px solid var(--grey-color-light);
+    border-radius: 5px;
+    text-align: left;
+    float: right;
+  }
+
+  label[for="nav-trigger"] {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 36px;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .menu-icon {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 26px;
+    line-height: 0;
+    padding-top: 10px;
+    text-align: center;
+  }
+
+  .menu-icon > svg {
+    fill: var(--grey-color-dark);
+  }
+
+  input ~ .trigger {
+    clear: both;
+    display: none;
+  }
+
+  input:checked ~ .trigger {
+    display: block;
+    padding-bottom: 5px;
+  }
+
+  .page-link {
+    display: block;
+    padding: 5px 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .page-link:not(:last-child) {
+    margin-right: 0;
+  }
+}

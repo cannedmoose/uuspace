@@ -2,7 +2,6 @@
   animation: blink-caret 1.5s step-end infinite;
 }
 
-// TODO(P2) Make animation not jump around so much :/
 @keyframes blink-caret {
   from,
   to {

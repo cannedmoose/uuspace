@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-	{%- include head.html -%}
+	{%- include head.html.liquid -%}
 
 	<body>
-		{%- include site-nav.html -%}
+		{%- include site-nav.html.liquid -%}
 		<div class="wrapper">
 			{{ content }}
 		</div>

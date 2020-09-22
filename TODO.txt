@@ -1,17 +1,10 @@
-P1 make underlines appear/reappear with cursor (maybe switch back to opacity...)
-P1 Clean up + document form
-P1 loading indicator for contact form
-	- Flashing cursor, displays text after it's done.
-P1 make splitting better (all in one, multiple words per cursor)
-P1 get font embedding to work
+- Figure out CSS
+	- use a template (get includes)
+		- Maybe use post css (only need to run it as a transform)
+	- minify in transform
+	- CSS variables
 
-P1 look into loading times.
-
-P1 Get a build process working
-
-P2 look into Adwords
-P2 revisit menu 
-
-p3 Animated title
-P3 Fix scroll effects...
-P3 Add Meta tags (probs not needed)
+- FIGURE OUT JS
+	- Want just handwritten stuff, keep inclusions minimal, should be served from CDN
+	- should be minified JS in transform
+	- Don't think we need to template it, can be treated as asset?

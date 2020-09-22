@@ -1,0 +1,30 @@
+{
+  "name": "uspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx eleventy",
+    "watch": "npx eleventy --watch",
+    "serve": "npx eleventy --serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cannedmoose/uuspace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cannedmoose/uuspace/issues"
+  },
+  "homepage": "https://github.com/cannedmoose/uuspace#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.0",
+    "autoprefixer": "^10.0.0",
+    "postcss": "^8.0.6",
+    "postcss-preset-env": "^6.7.0",
+    "precss": "^4.0.0",
+    "sass": "^1.26.11"
+  }
+}
