@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet"
-				href="/main.css?id=1600740587">
+				href="/main.css?id=1600740831">
 	<script>// TODO minify in include...
 /**
 	Cool typewriter effect. 
@@ -164,7 +164,7 @@ function createUUID() {
 </script>
 	<link rel="shortcut icon" type="image/png" sizes="128x128"
 				href="/assets/favicon.png">
-	<title>home | Unique Spaces</title>
+	<title>contact | Unique Spaces</title>
 </head>
 <body><div class="header">
 	<nav class="site-nav">
@@ -178,38 +178,83 @@ function createUUID() {
 			</span>
 		</label>
 
-		<div class="trigger"><a class="page-link glow"
-					aria-current="page"
+		<div class="trigger"><a class="page-link"
+					
 						href="/">home</a><a class="page-link"
 					
-						href="/portfolio.html">portfolio</a><a class="page-link"
-					
+						href="/portfolio.html">portfolio</a><a class="page-link glow"
+					aria-current="page"
 						href="/contact.html">contact</a></div>
 	</nav>
 </div>
 <div class="wrapper">
-			<script>
+			
+<script>
 	window.addEventListener('DOMContentLoaded', (event) => {
 		let textCursor = animatedCursor(`h1`, (t)=>{
 				return [t];
 			}, 50);
-
 		window.requestAnimationFrame(textCursor.play);
+
+		document.querySelector(".contact-form").addEventListener('submit', async (event) => {
+			event.preventDefault();
+			try {
+			const data = await postData('https://qs3klfxwq2.execute-api.ap-southeast-2.amazonaws.com/Prod',
+			{ name: document.querySelector("#name").value,
+				email: document.querySelector("#email").value,
+				message: document.querySelector("#message").value
+			});
+				document.querySelector("#form-response").innerText = "I will get back to you shortly.";
+			} catch (error) {
+				console.log(error);
+				document.querySelector("#form-response").innerText = "Something went wrong, email me@u-u.space"
+			}
+		});
 	});
+
+	async function postData(url = '', data = {}) {
+		return fetch(url, {
+			method: 'POST', 
+			mode: 'cors', 
+			cache: 'no-cache',
+			credentials: 'omit',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			redirect: 'follow',
+			referrer: 'no-referrer', 
+			body: JSON.stringify(data)
+		}).then(response => response.json());
+	}
 </script>
 
-<div class="tagline">
-	<h1 class="type">
-		u-u.space
-	</h1>
-	<p class="type">
-		Based in Exeter, Australia.
-	</p>
-	<p>
-		<span class="type">Interested in working together? Contact</span> <a class="type" href="/contact">me@u-u.space</a>
-	</p>
-</div>
+<h1 class="type">Get in touch</h1>
 
+<p class="type">
+I'm currently taking on new work.
+</p>
+
+<p class="type">
+If you have a project let me know:
+</p>
+
+<form class="contact-form" method="POST" action="https://qs3klfxwq2.execute-api.ap-southeast-2.amazonaws.com/Prod">
+	<div>
+		<label for="name">Name</label>
+		<input type="text" name="name" id="name">
+	</div>
+	<div>
+		<label for="email">Email</label>
+		<input type="text" name="email" id="email">
+	</div>
+	<div class = "message-box">
+		<label for="message">Message</label>
+		<textarea name="message" id="message"></textarea>
+	</div>
+	<button class="contact-submit" id="submit">Send</button>
+</form>
+
+<div id="form-response"></div>
 		</div><div class="footer">
 	<div class="smallText">
 		<p>
