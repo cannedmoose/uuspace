@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet"
+				href="/main.css?id=1600740587">
+	<script>// TODO minify in include...
+/**
+	Cool typewriter effect. 
+	
+	.toshow tracks blocks not yet shown 
+	.showing tracks current block being shown
+	current character is tracked by a count data attribute
+
+	Here's the flow:
+	To start typewriting pass a selector
+	Blocks have a next selector
+	*/
+
+function createCursors(selector, splitter) {
+  // selector selects elements that should only contain text
+  // splitter splits that text into a bunch of chunks
+  // each chunk gets a cursor
+
+  let styleEl = document.createElement("style");
+  document.querySelector("head").appendChild(styleEl);
+
+  let maxChunk = 0;
+  // Need to add style node just for this call.
+  document.querySelectorAll(selector).forEach((el) => {
+    // Skip out on non-leaf nodes.
+    if (el.firstElementChild) return;
+    // TODO (make pass this element)
+    let split = splitter(el.innerText);
+    let elHTML = "";
+    for (i = 0; i < split.length; i++) {
+      let chunk = split[i];
+      if (chunk.length > maxChunk) maxChunk = chunk.length;
+      let chunkHTML = "";
+      for (j = 0; j < chunk.length; j++) {
+        chunkHTML += `<span>${chunk.charAt(j)}</span>`;
+      }
+      elHTML += `<span class="curs0r">${chunkHTML}</span>`;
+    }
+    el.innerHTML = elHTML;
+  });
+
+  // TODO pass in styling...
+  let blanker = `
+        ${selector} > .curs0r > * {
+          color: black;
+          text-shadow: none;
+        }
+      `;
+
+  let count = 0;
+  let tick = () => {
+    styleEl.innerHTML = `
+          ${blanker}
+          ${selector} > .curs0r > :nth-child(n + 1):nth-child(-n + ${count}) {
+            color: white;
+            text-shadow: inherit;
+          }
+  
+          ${selector} > .curs0r > :nth-child(${count + 1}){
+            background-color: white;
+            color: white;
+            fill: white;
+            box-shadow: 0px 0px 2px aqua, 0px 0px 10px aqua;
+            text-shadow: none;
+          }
+          `;
+    count += 1;
+    return count > maxChunk;
+  };
+
+  let reset = () => {
+    count = 0;
+    styleEl.innerHTML = `${blanker}`;
+  };
+
+  reset();
+
+  return { tick, reset };
+}
+
+function animatedCursor(selector, splitter, timeout, doneCallback) {
+  let { tick, reset } = createCursors(selector, splitter);
+  let oreset = reset;
+
+  let handle = undefined;
+  let play = () => {
+    if (handle) {
+      return;
+    }
+    handle = window.setInterval(() => {
+      if (tick() && handle) {
+        window.clearInterval(handle);
+        handle = undefined;
+        if (doneCallback) doneCallback();
+      }
+    }, timeout);
+  };
+
+  reset = () => {
+    if (handle) window.clearInterval(handle);
+    handle = undefined;
+    oreset();
+  };
+
+  return { play, reset };
+}
+
+function createUUID() {
+  let dt = new Date().getTime();
+
+  const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+    /[xy]/g,
+    function (c) {
+      const r = (dt + Math.random() * 16) % 16 | 0;
+      dt = Math.floor(dt / 16);
+      return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+    }
+  );
+
+  return uuid;
+}
+
+{
+  const url =
+    "https://script.google.com/macros/s/AKfycbwHdowlbeaSQj05QW1dPYrBauzH-G6VfhBHIKP2fxVtKsCWgyQ/exec";
+  const location = window.location.href;
+  const screenHeight = window.screen.availHeight;
+  const screenWidth = window.screen.availWidth;
+  const UA = navigator.userAgent;
+  const platform = navigator.platform;
+  const touchpoints = navigator.maxTouchPoints;
+  const referrer = document.referrer;
+  const UUID = window.localStorage.getItem("uuid") || createUUID();
+  window.localStorage.setItem("uuid", UUID);
+
+  const data = [
+    UUID,
+    platform,
+    touchpoints,
+    UA,
+    screenHeight,
+    screenWidth,
+    location,
+    referrer,
+  ];
+
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    mode: "no-cors",
+  }).then((resp) => console.log(resp.body));
+}
+</script>
+	<link rel="shortcut icon" type="image/png" sizes="128x128"
+				href="/assets/favicon.png">
+	<title>home | Unique Spaces</title>
+</head>
+<body><div class="header">
+	<nav class="site-nav">
+		<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+		<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+					<path
+								d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
+				</svg>
+			</span>
+		</label>
+
+		<div class="trigger"><a class="page-link glow"
+					aria-current="page"
+						href="/">home</a><a class="page-link"
+					
+						href="/portfolio.html">portfolio</a><a class="page-link"
+					
+						href="/contact.html">contact</a></div>
+	</nav>
+</div>
+<div class="wrapper">
+			<script>
+	window.addEventListener('DOMContentLoaded', (event) => {
+		let textCursor = animatedCursor(`h1`, (t)=>{
+				return [t];
+			}, 50);
+
+		window.requestAnimationFrame(textCursor.play);
+	});
+</script>
+
+<div class="tagline">
+	<h1 class="type">
+		u-u.space
+	</h1>
+	<p class="type">
+		Based in Exeter, Australia.
+	</p>
+	<p>
+		<span class="type">Interested in working together? Contact</span> <a class="type" href="/contact">me@u-u.space</a>
+	</p>
+</div>
+
+		</div><div class="footer">
+	<div class="smallText">
+		<p>
+			© 2020 Callan McNamara
+		</p>
+		<p>I acknowledge the Traditional Owners of country throughout Australia and recognise their continuing connection to land, waters and culture. I pay our respects to their Elders past, present and emerging.
+		</p>
+	</div>
+</div>
+</body>
+
+</html>
