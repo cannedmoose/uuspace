@@ -321,4 +321,8 @@ pre > code {
   .page-link:not(:last-child) {
     margin-right: 0;
   }
+
+  .site-nav .menu-icon {
+    display: block;
+  }
 }
